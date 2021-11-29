@@ -32,15 +32,15 @@ const theme = createTheme();
 
 export default function SignInSide() {
 
-const {correo, setCorreo} = useState('')
-const {contrasena, setContrasena} = useState('')
+const [correo, setCorreo] = useState('')
+const [contrasena, setContrasena] = useState('')
 
 const Login=async(e)=>{
     e.preventDefault();
     const usuario={correo,contrasena}
     const respuesta = await Axios.post('/admin/login',usuario);
     console.log (respuesta)
-    const mensaje= respuesta.data.mensaje\
+    const mensaje= respuesta.data.mensaje
     
     if (mensaje!=='BIENVENIDO'){
 
@@ -69,8 +69,6 @@ const Login=async(e)=>{
         window.location.href='/Index'
     }
 }
-
-
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -116,7 +114,7 @@ const Login=async(e)=>{
                 <Typography component="h1" variant="h5">
                 Sign in
                 </Typography>
-                <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+                <Box component="form" noValidate onSubmit={Login} sx={{ mt: 1 }}>
                 <TextField
                     margin="normal"
                     required
@@ -126,6 +124,7 @@ const Login=async(e)=>{
                     name="email"
                     autoComplete="email"
                     autoFocus
+                    onChange={(e)=> setCorreo (e.target.value)}
                 />
                 <TextField
                     margin="normal"
@@ -136,6 +135,7 @@ const Login=async(e)=>{
                     type="password"
                     id="password"
                     autoComplete="current-password"
+                    onChange={(e)=> setContrasena (e.target.value)}
                 />
                 <FormControlLabel
                     control={<Checkbox value="remember" color="primary" />}

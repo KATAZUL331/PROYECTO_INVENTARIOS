@@ -1,9 +1,9 @@
-import React from 'react'
-
-export default function Index() {
+const Index = () => {
     return (
         <div className='container'>
-            <h1>BIENVENIDOS</h1>
+            <h1>BIENVENIDO</h1>
         </div>
     )
 }
+
+export default Index

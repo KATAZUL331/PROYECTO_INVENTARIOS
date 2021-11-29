@@ -4,9 +4,10 @@ import Navegacion from './componentes/Navegacion';
 import Admin from './componentes/Admin';
 import UsuarioListado from './componentes/UsuarioListado';
 import Usuario from './componentes/Usuario';
-import ClienteListado from './componentes/ClienteListado';
 import Cliente from './componentes/Cliente';
-import Login from './componentes/Login'
+import ClienteListado from './componentes/ClienteListado';
+import Index from './componentes/Index';
+import Login from './componentes/Login';
 
 
 function App(){
@@ -16,6 +17,7 @@ function App(){
         <Navegacion/>
         <Route path='/' exact component={Login}/>
         <Route path='/admin' exact component={Admin}/>
+        <Route path='/index' exact component={Index}/>
         <Route path='/usuarioListado' exact component={UsuarioListado}/>
         <Route path='/usuario' exact component={Usuario}/>
         <Route path='/cliente' exact component={Cliente}/>
