@@ -8,8 +8,8 @@ mongoose.connect(URI, {
         useUnifiedTopology: true
     })
     .then(db => console.log('Estoy conectado a la base de datos: ', db.connection.name))
-    .catch(error => console.log(error)) *
-    /
+    .catch(error => console.log(error)) 
+    */
 
 /*CODIGO BASE REMOTE
 const mongoose = require('mongoose');

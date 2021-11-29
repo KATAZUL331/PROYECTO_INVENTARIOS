@@ -1,19 +1,13 @@
-const mongoose = require('mongoose');
+//CODIGO PARA BASE LOCAL
+const mongoose = require('mongoose')
+URI = ('mongodb://localhost/bdNivelacion')
 
-const remoteHost = 'base.rgbch.mongodb.net';
-const remoteUser = 'KATAZUL';
-const remotePass = '821231';
-const remoteDb = 'hr';
+mongoose.connect(URI, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    })
+    .then(db => console.log('Estoy conectado a la base de datos: ', db.connection.name))
+    .catch(error => console.log(error))
 
-exports.mongoConnect = () => {
-    const mongoStringConnection = `mongodb + srv://${remoteUser}:${remotePass}@${remoteHost}/${remoteDb}?retryWrites=true&w=majority`;
-    mongoose.connect(mongoStringConnection);
-    mongoose.Promise = global.Promise;
-    const dbConnection = mongoose.connection;
-    dbConnection.on(
-        'error',
-        console.error.bind(console, 'ERROR EN LA CONEXION A LA BASE DE DATOS')
-    );
-};
 
 module.exports = mongoose

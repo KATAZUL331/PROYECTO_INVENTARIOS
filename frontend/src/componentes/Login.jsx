@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -12,6 +11,9 @@ import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import React, {useState} from 'react';
+import Axios from 'axios';
+import Swal from 'sweetalert2'
 
 function Copyright(props) {
     return (
@@ -29,6 +31,47 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignInSide() {
+
+const {correo, setCorreo} = useState('')
+const {contrasena, setContrasena} = useState('')
+
+const Login=async(e)=>{
+    e.preventDefault();
+    const usuario={correo,contrasena}
+    const respuesta = await Axios.post('/admin/login',usuario);
+    console.log (respuesta)
+    const mensaje= respuesta.data.mensaje\
+    
+    if (mensaje!=='BIENVENIDO'){
+
+        Swal.fire({
+            icon: 'error',
+            title: mensaje,
+            showConfirmButton: false,
+            timer: 1550
+        })
+    }
+    else{
+        const token = respuesta.data.token
+        const nombre = respuesta.data.nombre
+        const idUsuario = respuesta.data.id
+
+        sessionStorage.setItem('token', token)
+        sessionStorage.setItem('nombre', nombre)
+        sessionStorage.setItem('idUsuario', idUsuario)
+
+        Swal.fire({
+            icon: 'success',
+            title: mensaje,
+            showConfirmButton: false,
+            timer: 1550
+        })
+        window.location.href='/Index'
+    }
+}
+
+
+
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
