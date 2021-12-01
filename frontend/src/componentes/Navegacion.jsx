@@ -1,5 +1,5 @@
 import React, {useState,useEffect} from 'react'
-import { Navbar, Container, Offcanvas, Nav, NavDropdown, Form, FormControl, Button, } from 'react-bootstrap';
+import { Navbar, Container, Offcanvas, Nav, NavDropdown, Form, FormControl, Button } from 'react-bootstrap';
 
 export default function Navegacion() {
     const [show, setShow] = useState(true)
@@ -12,11 +12,9 @@ export default function Navegacion() {
             setShow(false)
             setOpcionRegistro(true)
         }
-        
     },[]);
 
     const salida=()=>{
-
         sessionStorage.clear()
         window.location.href="/"
     }
