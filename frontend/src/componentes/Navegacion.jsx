@@ -1,19 +1,38 @@
-import React from 'react'
+import React, {useState,useEffect} from 'react'
 import { Navbar, Container, Offcanvas, Nav, NavDropdown,Form, FormControl, Button } from 'react-bootstrap';
 
 export default function Navegacion() {
+    const [show, setShow] = useState(true)
+    const [opcioRegistro, setOpcionRegistro] = useState(false)
+    const [menu, setMenu] = useState(false)
+
+    useEffect(() => {
+        if(sessionStorage.getItem('token')){
+            setMenu(true)
+            setShow(false)
+            setOpcionRegistro(true)
+        }
+        
+    },[]);
+
+    const salida=()=>{
+
+        sessionStorage.clear()
+        window.location.href="/"
+    }
+
     return (
         <div>
-        <Navbar bg="primary" variant="dark" expand={false}>
+        <Navbar bg="primary" variant="dark" expand={show}>
         <Container fluid>
         <Navbar.Toggle aria-controls="offcanvasNavbar" />
-        <Navbar.Brand href="#"><i class="fas fa-paw"></i> INVENTARIO MASTER</Navbar.Brand>
+        <Navbar.Brand hidden ={show} href="#"><i class="fas fa-paw"></i> INVENTARIO MASTER</Navbar.Brand>
         <Navbar.Brand href="#"></Navbar.Brand>
         <Navbar.Brand href="#"></Navbar.Brand>
-        <Navbar.Brand href="#"><i class="fas fa-user-check"></i>  Bienvenid@ Nombre</Navbar.Brand>
+        <Navbar.Brand hidden ={show} href="#"><i class="fas fa-user-check"></i>  Bienvenid@ Nombre</Navbar.Brand>
         <Navbar.Brand href="#"></Navbar.Brand>
         <Navbar.Brand href="#"></Navbar.Brand>
-        <Navbar.Brand href="#"><i class="fas fa-sign-out-alt"></i>  Cerrar Sesión</Navbar.Brand>
+        <Navbar.Brand hidden ={show} href="#"><i class="fas fa-sign-out-alt"></i>  Cerrar Sesión</Navbar.Brand>
 
         <Navbar.Offcanvas
         id="offcanvasNavbar"

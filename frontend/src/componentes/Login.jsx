@@ -19,7 +19,7 @@ function Copyright(props) {
     return (
         <Typography variant="body2" color="text.secondary" align="center" {...props}>
         {'Copyright © '}
-        <Link color="inherit" href="https://mui.com/">
+        <Link color="inherit" href="https://github.com/KATAZUL331">
             Athenea Proyects
         </Link>{' '}
         {new Date().getFullYear()}
@@ -35,7 +35,7 @@ export default function SignInSide() {
 const [correo, setCorreo] = useState('')
 const [contrasena, setContrasena] = useState('')
 
-const Login=async(e)=>{
+const login=async(e)=>{
     e.preventDefault();
     const usuario={correo,contrasena}
     const respuesta = await Axios.post('/admin/login',usuario);
@@ -48,7 +48,7 @@ const Login=async(e)=>{
             icon: 'error',
             title: mensaje,
             showConfirmButton: false,
-            timer: 1550
+            timer: 2000
         })
     }
     else{
@@ -64,16 +64,15 @@ const Login=async(e)=>{
             icon: 'success',
             title: mensaje,
             showConfirmButton: false,
-            timer: 1550
+            timer: 2000
         })
         window.location.href='/Index'
     }
 }
 
-    const handleSubmit = (event) => {
+    const handleSumit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        // eslint-disable-next-line no-console
         console.log({
         email: data.get('email'),
         password: data.get('password'),
@@ -112,15 +111,15 @@ const Login=async(e)=>{
                 <LockOutlinedIcon />
                 </Avatar>
                 <Typography component="h1" variant="h5">
-                Sign in
+                INICIAR SESIÓN
                 </Typography>
-                <Box component="form" noValidate onSubmit={Login} sx={{ mt: 1 }}>
+                <Box component="form" noValidate onSubmit={login} sx={{ mt: 1 }}>
                 <TextField
                     margin="normal"
                     required
                     fullWidth
                     id="email"
-                    label="Usuario"
+                    label="Correo Electrónico"
                     name="email"
                     autoComplete="email"
                     autoFocus
@@ -131,7 +130,7 @@ const Login=async(e)=>{
                     required
                     fullWidth
                     name="password"
-                    label="Contrasena"
+                    label="Contraseña"
                     type="password"
                     id="password"
                     autoComplete="current-password"
@@ -139,7 +138,7 @@ const Login=async(e)=>{
                 />
                 <FormControlLabel
                     control={<Checkbox value="remember" color="primary" />}
-                    label="Remember me"
+                    label="Recuerdame"
                 />
                 <Button
                     type="submit"
@@ -166,6 +165,6 @@ const Login=async(e)=>{
             </Box>
             </Grid>
         </Grid>
-        </ThemeProvider>
+    </ThemeProvider>
     );
 }
