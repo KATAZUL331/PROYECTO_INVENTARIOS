@@ -20,6 +20,11 @@ export default function Admin() {
                         <input type="text" className="form-control required" />
                         </div>
 
+                        <div className="col-md-6">
+                        <label>Correo Electrónico</label>
+                        <input type="text" className="form-control required" />
+                        </div>
+
                         <div className="col-md-6" >
                         <label>Contraseña</label>
                         <input type="text" className="form-control required" />

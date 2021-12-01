@@ -1,6 +1,7 @@
 const { Router } = require('express')
 const router = Router()
 const UsuarioCtrl = require('../controller/Usuario.controller')
+const Autorizacion = require('../helper/Autorizacion')
 
 router.post('/crear', Autorizacion.verificarToken, UsuarioCtrl.crear)
 router.get('/listarUsuario', Autorizacion.verificarToken, UsuarioCtrl.listarUsuario)

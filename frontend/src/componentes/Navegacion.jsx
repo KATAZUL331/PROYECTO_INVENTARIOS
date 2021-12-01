@@ -1,9 +1,9 @@
 import React, {useState,useEffect} from 'react'
-import { Navbar, Container, Offcanvas, Nav, NavDropdown,Form, FormControl, Button } from 'react-bootstrap';
+import { Navbar, Container, Offcanvas, Nav, NavDropdown, Form, FormControl, Button, } from 'react-bootstrap';
 
 export default function Navegacion() {
     const [show, setShow] = useState(true)
-    const [opcioRegistro, setOpcionRegistro] = useState(false)
+    const [opcionRegistro, setOpcionRegistro] = useState(false)
     const [menu, setMenu] = useState(false)
 
     useEffect(() => {
@@ -32,7 +32,8 @@ export default function Navegacion() {
         <Navbar.Brand hidden ={show} href="#"><i class="fas fa-user-check"></i>  Bienvenid@ Nombre</Navbar.Brand>
         <Navbar.Brand href="#"></Navbar.Brand>
         <Navbar.Brand href="#"></Navbar.Brand>
-        <Navbar.Brand hidden ={show} href="#"><i class="fas fa-sign-out-alt"></i>  Cerrar Sesión</Navbar.Brand>
+        <link hidden={setOpcionRegistro} style={{color: '#0000FF', textDecoration:'none'}} to="/Admin"> <i className='fas fa-user-plus'> </i> <Navbar.Brand>REGISTRO</Navbar.Brand></link>
+        <Navbar.Brand hidden ={show} href="#" onClick={()=>salida()} to="/"><i class="fas fa-sign-out-alt"></i>  Cerrar Sesión</Navbar.Brand>
 
         <Navbar.Offcanvas
         id="offcanvasNavbar"
