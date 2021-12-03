@@ -1,37 +1,19 @@
-import React, {useState,useEffect} from 'react'
-import { Navbar, Container, Offcanvas, Nav, NavDropdown, Form, FormControl, Button } from 'react-bootstrap';
+import React from 'react'
+import { Navbar, Container, Offcanvas, Nav, NavDropdown,Form, FormControl, Button } from 'react-bootstrap';
 
 export default function Navegacion() {
-    const [show, setShow] = useState(true)
-    const [opcionRegistro, setOpcionRegistro] = useState(false)
-    const [menu, setMenu] = useState(false)
-
-    useEffect(() => {
-        if(sessionStorage.getItem('token')){
-            setMenu(true)
-            setShow(false)
-            setOpcionRegistro(true)
-        }
-    },[]);
-
-    const salida=()=>{
-        sessionStorage.clear()
-        window.location.href="/"
-    }
-
     return (
         <div>
-        <Navbar bg="primary" variant="dark" expand={show}>
+        <Navbar bg="primary" variant="dark" expand={false}>
         <Container fluid>
         <Navbar.Toggle aria-controls="offcanvasNavbar" />
-        <Navbar.Brand hidden ={show} href="#"><i class="fas fa-paw"></i> INVENTARIO MASTER</Navbar.Brand>
+        <Navbar.Brand href="#"><i class="fas fa-paw"></i> INVENTARIO MASTER</Navbar.Brand>
         <Navbar.Brand href="#"></Navbar.Brand>
         <Navbar.Brand href="#"></Navbar.Brand>
-        <Navbar.Brand hidden ={show} href="#"><i class="fas fa-user-check"></i>  Bienvenid@ Nombre</Navbar.Brand>
+        <Navbar.Brand href="#"><i class="fas fa-user-check"></i>  Bienvenid@ Nombre</Navbar.Brand>
         <Navbar.Brand href="#"></Navbar.Brand>
         <Navbar.Brand href="#"></Navbar.Brand>
-        <link hidden={setOpcionRegistro} style={{color: '#0000FF', textDecoration:'none'}} to="/Admin"> <i className='fas fa-user-plus'> </i> <Navbar.Brand>REGISTRO</Navbar.Brand></link>
-        <Navbar.Brand hidden ={show} href="#" onClick={()=>salida()} to="/"><i class="fas fa-sign-out-alt"></i>  Cerrar Sesión</Navbar.Brand>
+        <Navbar.Brand href="#"><i class="fas fa-sign-out-alt"></i>  Cerrar Sesión</Navbar.Brand>
 
         <Navbar.Offcanvas
         id="offcanvasNavbar"
