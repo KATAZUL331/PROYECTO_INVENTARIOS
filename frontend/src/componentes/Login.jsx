@@ -32,8 +32,8 @@ const theme = createTheme();
 
 export default function SignInSide() {
 
-const {correo, setCorreo} = useState('')
-const {contrasena, setContrasena} = useState('')
+const [correo, setCorreo] = useState('')
+const [contrasena, setContrasena] = useState('')
 
 const Login=async(e)=>{
     e.preventDefault();
@@ -48,7 +48,7 @@ const Login=async(e)=>{
             icon: 'error',
             title: mensaje,
             showConfirmButton: false,
-            timer: 1550
+            timer: 4000
         })
     }
     else{
@@ -64,13 +64,11 @@ const Login=async(e)=>{
             icon: 'success',
             title: mensaje,
             showConfirmButton: false,
-            timer: 1550
+            timer: 4000
         })
         window.location.href='/Index'
     }
 }
-
-
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -116,7 +114,7 @@ const Login=async(e)=>{
                 <Typography component="h1" variant="h5">
                 Sign in
                 </Typography>
-                <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+                <Box component="form" noValidate onSubmit={Login} sx={{ mt: 1 }}>
                 <TextField
                     margin="normal"
                     required
@@ -126,6 +124,7 @@ const Login=async(e)=>{
                     name="email"
                     autoComplete="email"
                     autoFocus
+                    OnChange={(e)=> setCorreo(e.target.value)}
                 />
                 <TextField
                     margin="normal"
@@ -136,6 +135,7 @@ const Login=async(e)=>{
                     type="password"
                     id="password"
                     autoComplete="current-password"
+                    OnChange={(e)=> setContrasena(e.target.value)}
                 />
                 <FormControlLabel
                     control={<Checkbox value="remember" color="primary" />}
