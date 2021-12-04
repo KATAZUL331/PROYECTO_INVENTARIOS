@@ -19,7 +19,7 @@ function Copyright(props) {
     return (
         <Typography variant="body2" color="text.secondary" align="center" {...props}>
         {'Copyright © '}
-        <Link color="inherit" href="https://mui.com/">
+        <Link color="inherit" href="https://github.com/KATAZUL331">
             Athenea Proyects
         </Link>{' '}
         {new Date().getFullYear()}
@@ -31,6 +31,7 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignInSide() {
+
 
 const [correo, setCorreo] = useState('')
 const [contrasena, setContrasena] = useState('')
@@ -112,7 +113,7 @@ const Login=async(e)=>{
                 <LockOutlinedIcon />
                 </Avatar>
                 <Typography component="h1" variant="h5">
-                Sign in
+                Registro G7 System
                 </Typography>
                 <Box component="form" noValidate onSubmit={Login} sx={{ mt: 1 }}>
                 <TextField
@@ -120,11 +121,11 @@ const Login=async(e)=>{
                     required
                     fullWidth
                     id="email"
-                    label="Usuario"
+                    label="Correo del Usuario"
                     name="email"
                     autoComplete="email"
                     autoFocus
-                    OnChange={(e)=> setCorreo(e.target.value)}
+                    onChange={(e)=> setCorreo(e.target.value)}
                 />
                 <TextField
                     margin="normal"
@@ -139,7 +140,7 @@ const Login=async(e)=>{
                 />
                 <FormControlLabel
                     control={<Checkbox value="remember" color="primary" />}
-                    label="Remember me"
+                    label="Recuerdame"
                 />
                 <Button
                     type="submit"
@@ -157,7 +158,7 @@ const Login=async(e)=>{
                     </Grid>
                     <Grid item>
                     <Link href="#" variant="body2">
-                        {"Don't have an account? Sign Up"}
+                        {"No tienes cuenta? Registrate"}
                     </Link>
                     </Grid>
                 </Grid>
