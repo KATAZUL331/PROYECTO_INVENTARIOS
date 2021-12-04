@@ -27,7 +27,7 @@ const salida=()=>{
         <Navbar bg="primary" variant="dark" expand={false}>
         <Container fluid>
         <Navbar.Toggle aria-controls="offcanvasNavbar" />
-       {/*  <Navbar.Brand href="#"><i class="fas fa-paw"></i> G7 SYSTEM </Navbar.Brand> */}
+        {/* <Navbar.Brand href="#"><i class="fas fa-paw"></i> G7 SYSTEM </Navbar.Brand> */}
         <Navbar.Brand hidden={show} href="#"><i class="fas fa-paw"></i> G7 SYSTEM </Navbar.Brand>
         <Navbar.Brand href="#"></Navbar.Brand>
         <Navbar.Brand href="#"></Navbar.Brand>
@@ -37,7 +37,7 @@ const salida=()=>{
         <Navbar.Brand href="#"></Navbar.Brand>
         {/* <Navbar.Brand href="#"><i class="fas fa-sign-out-alt"></i>  Cerrar Sesión</Navbar.Brand> */}
         {/* <link hidden={setOpcionRegistro} style={{color: '#0000FF', textDecoration:'none'}} to="/Admin"> <i className='fas fa-user-plus'> </i> <Navbar.Brand>REGISTRO</Navbar.Brand></link> */}
-       { <Navbar.Brand hidden ={show} href="#" onClick={()=>salida()} to="/"><i class="fas fa-sign-out-alt"></i>  Cerrar Sesión</Navbar.Brand>}
+        <Navbar.Brand hidden ={show} href="#" onClick={()=>salida()} to="/"><i class="fas fa-sign-out-alt"></i>  Cerrar Sesión</Navbar.Brand>
         
 
         <Navbar.Offcanvas
