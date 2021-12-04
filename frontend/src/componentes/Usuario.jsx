@@ -1,6 +1,21 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 
 export default function Usuario() {
+    const [nombres, setNombre]=useState('')
+    const [apellidos, setApellidos]=useState('')
+    const [cedulaUsuario, setCedulaUsuario]=useState('')
+    const [cargo, setCargo]=useState([])
+    const [tipoContrato, setTipoContrato]=useState([])
+    const [cedulaJefe, setCedulaJefe]=useState('')
+    const [jefeInmediato, setJefeInmediato]=useState('')
+
+    useEffect(()=>{
+        setCargo(['Tecnico','Administrador','Auxiliar'])
+        setTipoContrato  
+    })
+
+
+
     return (
         <div className="container mt-4">
         <div className="row">

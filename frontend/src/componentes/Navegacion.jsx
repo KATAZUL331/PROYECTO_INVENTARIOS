@@ -31,7 +31,7 @@ const salida=()=>{
         <Navbar.Brand hidden={show} href="#"><i class="fas fa-paw"></i> G7 SYSTEM </Navbar.Brand>
         <Navbar.Brand href="#"></Navbar.Brand>
         <Navbar.Brand href="#"></Navbar.Brand>
-        <Navbar.Brand hidden={show} href="#"><i class="fas fa-user-check"></i>  Bienvenid@ Nombre</Navbar.Brand>
+        <Navbar.Brand hidden={show} href="#"><i class="fas fa-user-check"></i>  Bienvenid@: {sessionStorage.getItem('nombre')} </Navbar.Brand>
         {/* <Navbar.Brand href="#"><i class="fas fa-user-check"></i>  Bienvenid@ Nombre</Navbar.Brand> */}
         <Navbar.Brand href="#"></Navbar.Brand>
         <Navbar.Brand href="#"></Navbar.Brand>
