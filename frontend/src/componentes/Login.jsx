@@ -32,14 +32,13 @@ const theme = createTheme();
 
 export default function SignInSide() {
 
-
 const [correo, setCorreo] = useState('')
 const [contrasena, setContrasena] = useState('')
 
 const Login=async(e)=>{
     e.preventDefault();
-    const usuario={correo,contrasena}
-    const respuesta = await Axios.post('/admin/login',usuario);
+    const Admin={correo,contrasena}
+    const respuesta = await Axios.post('/admin/login',Admin);
     console.log (respuesta)
     const mensaje= respuesta.data.mensaje
     
@@ -71,15 +70,15 @@ const Login=async(e)=>{
     }
 }
 
-    //const handleSubmit = (event) => {
-        //event.preventDefault();
-        //const data = new FormData(event.currentTarget);
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const data = new FormData(event.currentTarget);
         // eslint-disable-next-line no-console
-        //console.log({
-        //email: data.get('email'),
-        //password: data.get('password'),
-        //});
-    //};
+        console.log({
+        email: data.get('email'),
+        password: data.get('password'),
+        });
+    };
 
     return (
         <ThemeProvider theme={theme}>
@@ -170,3 +169,4 @@ const Login=async(e)=>{
         </ThemeProvider>
     );
 }
+

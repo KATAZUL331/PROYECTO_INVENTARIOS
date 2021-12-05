@@ -1,28 +1,28 @@
-const usuarioCtrl = {}
+const UsuarioCtrl = {}
 const Usuario = require('../models/Usuario.model')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
     //PETICION
-usuarioCtrl.crear = async(req, res) => {
+UsuarioCtrl.crear = async(req, res) => {
         const {
             nombres,
             apellidos,
-            correoElectronico,
             cedulaUsuario,
+            correoElectronico,
             telefono,
             cargo,
             tipoContrato,
-            jefeInmediato,
+            jefeInmediato
         } = req.body
         const NuevoUsuario = new Usuario({
             nombres,
             apellidos,
+            cedulaUsuario,
             correoElectronico,
             telefono,
-            cedulaUsuario,
             cargo,
             tipoContrato,
-            jefeInmediato,
+            jefeInmediato
         })
         const respuesta = await NuevoUsuario.save()
         res.json({
@@ -32,24 +32,24 @@ usuarioCtrl.crear = async(req, res) => {
     }
     //lISTADO DE USUARIO
 
-usuarioCtrl.listarUsuario = async(req, res) => {
+UsuarioCtrl.listarUsuario = async(req, res) => {
     const respuesta = await Usuario.find()
     res.json(respuesta)
 }
 
-usuarioCtrl.listarId = async(req, res) => {
+UsuarioCtrl.listarId = async(req, res) => {
     const id = req.params.id;
     const respuesta = await Usuario.findById({ _id: id })
     res.json(respuesta)
 }
 
-usuarioCtrl.listarPorAdministrador = async(req, res) => {
+UsuarioCtrl.listarPorAdministrador = async(req, res) => {
     const id = req.params.id;
-    const respuesta = await Usuario.findById({ Admin: id })
+    const respuesta = await Usuario.find({ admin: id })
     res.json(respuesta)
 }
 
-usuarioCtrl.eliminarUsuario = async(req, res) => {
+UsuarioCtrl.eliminarUsuario = async(req, res) => {
     const id = req.params.id;
     await Usuario.findByIdAndRemove({ _id: id })
     res.json({
@@ -57,7 +57,7 @@ usuarioCtrl.eliminarUsuario = async(req, res) => {
     })
 }
 
-usuarioCtrl.actualizarDatoUsuario = async(req, res) => {
+UsuarioCtrl.actualizarDatoUsuario = async(req, res) => {
     const id = req.params.id;
     await Usuario.findByIdAndUpdate({ _id: id }, req.body)
     res.json({
@@ -65,7 +65,7 @@ usuarioCtrl.actualizarDatoUsuario = async(req, res) => {
     })
 }
 
-usuarioCtrl.buscarUsuarioCriterio = async(req, res) => {
+UsuarioCtrl.buscarUsuarioCriterio = async(req, res) => {
     const nombres = req.params.criterio;
     try {
         const respuesta = await Usuario.find({ nombres: nombres })
@@ -80,4 +80,4 @@ usuarioCtrl.buscarUsuarioCriterio = async(req, res) => {
 
 //EXPORTAR EL MODULO
 
-module.exports = usuarioCtrl
+module.exports = UsuarioCtrl

@@ -16,10 +16,10 @@ export default function Usuario() {
 
     useEffect(()=>{
         setCargo(['Tecnico','Administrador','Auxiliar', 'Jefe'])
-        setCargoSelect(['Seleccionar'])
+        setCargoSelect('Seleccionar Dato')
 
         setTipoContrato  (['Término Fijo','Término indefinido','Obra o labor','Prestacion de Servicios','Aprendizaje'])
-        setTipoContratoSelect(['Seleccionar'])
+        setTipoContratoSelect('Seleccionar Dato')
     },[])
 
     const GuardarUsuario=async(e)=>{

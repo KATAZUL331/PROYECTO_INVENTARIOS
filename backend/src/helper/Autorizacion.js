@@ -15,7 +15,7 @@ Autorizacion.verificarToken = (req, res, next) => {
         })
     }
 
-    jwt.verify(token, 'Secreta', (error, resultado) => {
+    jwt.verify(token, "Secreto", (error, resultado) => {
         if (error)
             return res.json({
                 mensaje: 'NO ESTAS AUTORIZAD@'
