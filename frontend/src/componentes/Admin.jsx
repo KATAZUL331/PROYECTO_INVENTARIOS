@@ -10,13 +10,18 @@ export default function Admin() {
                     <i className="fas fa-user-plus"></i>
                 </div>
                 <div className="card-header bg-info text-center">
-                    <h4>LOGIN</h4>
+                    <h4>REGISTRO DE USUARIO</h4>
                 </div>
                 <div className="card-body">
                     <form onSubmit={"guardar"}>
                     <div className="row">
+                        <div className="form-group">
+                        <label>Nombre Completo</label>
+                        <input type="text" className="form-control required" />
+                        </div>
+
                         <div className="col-md-6">
-                        <label>Usuario</label>
+                        <label>Correo Electrónico</label>
                         <input type="text" className="form-control required" />
                         </div>
 
@@ -28,7 +33,7 @@ export default function Admin() {
                     </div>
                     <br/>
                     <button type="submit" class="btn btn-outline-success" >
-                        <span class="fa fa-save"></span> Ingresar
+                        <span class="fa fa-save"></span> Guardar
                     </button>
                     </form>
                 </div>

@@ -4,10 +4,11 @@ const { Schema } = mongoose
 const UsuarioSchema = new Schema({
     nombres: String,
     apellidos: String,
+    correoElectronico: String,
     cedulaUsuario: Number,
+    telefono: Number,
     cargo: String,
     tipoContrato: String,
-    cedulaJefe: Number,
     jefeInmediato: String,
     date: { type: Date, default: Date.now }
 })

@@ -1,17 +1,17 @@
 import React, {useState, useEffect} from 'react';
 import { Navbar, Container, Offcanvas, Nav, NavDropdown,Form, FormControl, Button } from 'react-bootstrap';
-import {link} from 'react-router-dom'
+//import {link} from 'react-router-dom'
 
 export default function Navegacion() {
 const [show, setShow] = useState(true)
-const [opcionRegistro, setOpcionRegistro] = useState(false)
-const[menu, setMenu]= useState(false)
+//const [opcionRegistro, setOpcionRegistro] = useState(false)
+//const [menu, setMenu]= useState(false)
 
 useEffect(() => {
     if(sessionStorage.getItem('token')){
-        setMenu(true)
+        //setMenu(true)
         setShow(false)
-        setOpcionRegistro(true)
+        //setOpcionRegistro(true)
     }
 },[]);
 
@@ -76,11 +76,11 @@ const salida=()=>{
             <Form className="d-flex">
             <FormControl
                 type="search"
-                placeholder="Search"
+                placeholder="Busqueda"
                 className="me-2"
                 aria-label="Search"
             />
-            <Button variant="outline-success">Search</Button>
+            <Button variant="outline-success">Busqueda</Button>
             </Form>
         </Offcanvas.Body>
         </Navbar.Offcanvas>

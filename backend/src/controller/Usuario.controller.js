@@ -7,19 +7,21 @@ usuarioCtrl.crear = async(req, res) => {
         const {
             nombres,
             apellidos,
+            correoElectronico,
             cedulaUsuario,
+            telefono,
             cargo,
             tipoContrato,
-            cedulaJefe,
             jefeInmediato,
         } = req.body
         const NuevoUsuario = new Usuario({
             nombres,
             apellidos,
+            correoElectronico,
+            telefono,
             cedulaUsuario,
             cargo,
             tipoContrato,
-            cedulaJefe,
             jefeInmediato,
         })
         const respuesta = await NuevoUsuario.save()
