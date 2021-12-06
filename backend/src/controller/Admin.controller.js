@@ -20,7 +20,7 @@ AdminCtrl.crear = async(req, res) => {
         })
     } else {
         NuevoAdmin.contrasena = await bcrypt.hash(contrasena, 10)
-        const token = jwt.sign({ _id: NuevoAdmin._id }, "Secreto")
+        const token = jwt.sign({ _id: NuevoAdmin._id }, 'Secreto')
         await NuevoAdmin.save()
 
         res.json({
@@ -43,7 +43,7 @@ AdminCtrl.login = async(req, res) => {
         const match = await bcrypt.compare(contrasena, admin.contrasena)
 
         if (match) {
-            const token = jwt.sign({ _id: admin._id }, "Secreto")
+            const token = jwt.sign({ _id: admin._id }, 'Secreto')
             res.json({
                 mensaje: 'BIENVENID@, HAS INICIADO SESION',
                 id: admin.id,

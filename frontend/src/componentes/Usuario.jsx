@@ -8,10 +8,10 @@ export default function Usuario() {
     const [cedulaUsuario, setCedulaUsuario]=useState('')
     const [correoElectronico, setCorreoElectronico]=useState('')
     const [telefono, setTelefono]=useState('')
-    const [cargo, setCargo]=useState([])
-    const [cargoSelect, setCargoSelect]=useState([])
-    const [tipoContrato, setTipoContrato]=useState([])
-    const [tipoContratoSelect, setTipoContratoSelect]=useState([])
+    const [cargo, setCargo]=useState([])//arreglo
+    const [cargoSelect, setCargoSelect]=useState([])//arreglo
+    const [tipoContrato, setTipoContrato]=useState([])//arreglo
+    const [tipoContratoSelect, setTipoContratoSelect]=useState([])//arreglo
     const [jefeInmediato, setJefeInmediato]=useState('')
 
     useEffect(()=>{

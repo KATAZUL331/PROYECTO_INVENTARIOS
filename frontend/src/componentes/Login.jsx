@@ -35,14 +35,14 @@ export default function SignInSide() {
 const [correo, setCorreo] = useState('')
 const [contrasena, setContrasena] = useState('')
 
-const Login=async(e)=>{
+const login=async(e)=>{
     e.preventDefault();
     const Admin={correo,contrasena}
-    const respuesta = await Axios.post('/admin/login',Admin);
+    const respuesta = await Axios.post('/admin/login/',Admin);
     console.log (respuesta)
     const mensaje= respuesta.data.mensaje
     
-    if (mensaje!=='BIENVENIDO'){
+    if (!mensaje==='BIENVENIDO'){
 
         Swal.fire({
             icon: 'error',
@@ -69,7 +69,7 @@ const Login=async(e)=>{
         window.location.href='/Index'
     }
 }
-
+/* 
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
@@ -78,7 +78,7 @@ const Login=async(e)=>{
         email: data.get('email'),
         password: data.get('password'),
         });
-    };
+    }; */
 
     return (
         <ThemeProvider theme={theme}>
@@ -114,7 +114,7 @@ const Login=async(e)=>{
                 <Typography component="h1" variant="h5">
                 Registro G7 System
                 </Typography>
-                <Box component="form" noValidate onSubmit={Login} sx={{ mt: 1 }}>
+                <Box component="form" noValidate onSubmit={login} sx={{ mt: 1 }}>
                 <TextField
                     margin="normal"
                     required
@@ -149,18 +149,6 @@ const Login=async(e)=>{
                 >
                     Ingresar
                 </Button>
-                <Grid container>
-                    <Grid item xs>
-                    <Link href="#" variant="body2">
-                        Olvido la contrasena?
-                    </Link>
-                    </Grid>
-                    <Grid item>
-                    <Link href="#" variant="body2">
-                        {"No tienes cuenta? Registrate"}
-                    </Link>
-                    </Grid>
-                </Grid>
                 <Copyright sx={{ mt: 5 }} />
                 </Box>
             </Box>
