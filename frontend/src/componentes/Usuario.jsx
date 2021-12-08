@@ -8,35 +8,37 @@ export default function Usuario() {
     const [cedulaUsuario, setCedulaUsuario]=useState('')
     const [correoElectronico, setCorreoElectronico]=useState('')
     const [telefono, setTelefono]=useState('')
+
     const [cargo, setCargo]=useState([])//arreglo
     const [cargoSelect, setCargoSelect]=useState([])//arreglo
+
     const [tipoContrato, setTipoContrato]=useState([])//arreglo
     const [tipoContratoSelect, setTipoContratoSelect]=useState([])//arreglo
+    
     const [jefeInmediato, setJefeInmediato]=useState('')
 
     useEffect(()=>{
-        setCargo(['Tecnico','Administrador','Auxiliar', 'Jefe'])
-        setCargoSelect('Seleccionar Dato')
+        setCargo(['Seleccionar Dato','Tecnico','Administrador','Auxiliar', 'Jefe'])
 
-        setTipoContrato  (['Término Fijo','Término indefinido','Obra o labor','Prestacion de Servicios','Aprendizaje'])
-        setTipoContratoSelect('Seleccionar Dato')
+        setTipoContrato  (['Seleccionar Dato', 'Término Fijo','Término indefinido','Obra o labor','Prestacion de Servicios','Aprendizaje'])
     },[])
 
     const GuardarUsuario=async(e)=>{
         e.preventDefault()
-        const Usuario={
+            const Usuario={
             nombres,
             apellidos,
             cedulaUsuario,
-            correoElectronico: sessionStorage.getItem('correo'),
+            correoElectronico, 
             cargo:cargoSelect,
             telefono,
             tipoContrato:tipoContratoSelect,
-            jefeInmediato
+            jefeInmediato,
+            admin: sessionStorage.getItem('idUsuario'),
+            adminNombre: sessionStorage.getItem('nombre')
         }
 
-        if(nombres===""){
-
+/*         if(nombres===''){
             Swal.fire({
                 icon: 'error',
                 title: 'Digitar nombres completos',
@@ -44,8 +46,7 @@ export default function Usuario() {
                 timer: 4000
             })
         } 
-        else if(apellidos===""){
-
+        if(apellidos===''){
             Swal.fire({
                 icon: 'error',
                 title: 'Digitar apellidos completos',
@@ -53,8 +54,7 @@ export default function Usuario() {
                 timer: 4000
             })
         } 
-        else if(cedulaUsuario===""){
-
+        if(cedulaUsuario===''){
             Swal.fire({
                 icon: 'error',
                 title: 'Digitar numero seguido',
@@ -62,8 +62,7 @@ export default function Usuario() {
                 timer: 4000
             })
         }
-        else if(correoElectronico===""){
-
+        if(correoElectronico===''){
             Swal.fire({
                 icon: 'error',
                 title: 'Digitar correo electronico',
@@ -71,8 +70,7 @@ export default function Usuario() {
                 timer: 4000
             })
         } 
-        else if(telefono===""){
-
+        if(telefono===''){
             Swal.fire({
                 icon: 'error',
                 title: 'Digitar numero fijo o celular',
@@ -80,19 +78,17 @@ export default function Usuario() {
                 timer: 4000
             })
         } 
-
-        else if(jefeInmediato===""){
-
+        if(jefeInmediato===''){
             Swal.fire({
                 icon: 'error',
                 title: 'Digitar nombre completo de su jefe',
                 showConfirmButton: false,
                 timer: 4000
             })
-        } 
-        else{
+        }  */
+        //if(Usuario!==''){
             const token = sessionStorage.getItem('token')
-            const respuesta = await Axios.post('/usuario/crear',Usuario,
+            const respuesta = await Axios.post('/usuario/crear/',Usuario,
             {
                 headers: {'autorizar':token}
             })
@@ -113,7 +109,7 @@ export default function Usuario() {
             setCorreoElectronico("");
             setJefeInmediato("");
         }
-    }
+    
 
     return (
         <div className="container mt-4">
@@ -128,66 +124,66 @@ export default function Usuario() {
                 </div>
                 <div className="card-body">
                     <form onSubmit={GuardarUsuario}>
-                    <div className="row">
+                        <div className="row">
 
-                        <div className="col-md-6">
-                        <label>Documento de Identidad</label>
-                        <input type="text" className="form-control required" OnChange={(e)=> setCedulaUsuario(e.target.value)} />
-                        </div>
+                            <div className="col-md-6">
+                            <label>Documento de Identidad</label>
+                            <input type="text" className="form-control required" OnChange={(e)=> setCedulaUsuario(e.target.value)} />
+                            </div>
 
-                        <div className="form-group">
-                        <label>Nombres Completos</label>
-                        <input type="text" className="form-control required" OnChange={(e)=> setNombres(e.target.value)} />
-                        </div>
+                            <div className="form-group">
+                            <label>Nombres Completos</label>
+                            <input type="text" className="form-control required" OnChange={(e)=> setNombres(e.target.value)} />
+                            </div>
 
-                        <div className="form-group">
-                        <label>Apellidos Completos</label>
-                        <input type="text" className="form-control required" OnChange={(e)=> setApellidos(e.target.value)} />
-                        </div>
+                            <div className="form-group">
+                            <label>Apellidos Completos</label>
+                            <input type="text" className="form-control required" OnChange={(e)=> setApellidos(e.target.value)} />
+                            </div>
 
-                        <div className="col-md-6">
-                        <label>Correo Electrónico</label>
-                        <input type="text" className="form-control required" OnChange={(e)=> setCorreoElectronico(e.target.value)} />
-                        </div>
+                            <div className="col-md-6">
+                            <label>Correo Electrónico</label>
+                            <input type="text" className="form-control required" OnChange={(e)=> setCorreoElectronico(e.target.value)} />
+                            </div>
 
-                        <div className="col-md-6">
-                        <label>telefono/celular</label>
-                        <input type="text" className="form-control required" OnChange={(e)=> setTelefono(e.target.value)} />
-                        </div>
+                            <div className="col-md-6">
+                            <label>telefono/celular</label>
+                            <input type="text" className="form-control required" OnChange={(e)=> setTelefono(e.target.value)} />
+                            </div>
 
-                        <div className="col-md-6">
-                        <label>Cargo</label>
-                        <select className='form-control' OnChange={(e)=> setCargoSelect(e.target.value)}>
-                            {cargo.map(cargo=>
-                                (<option key={cargo}>
-                                    {cargo}
-                                </option>
-                                ))
-                            }
-                        </select>
-                        </div>
+                            <div className="col-md-6">
+                            <label>Cargo</label>
+                            <select className='form-control' OnChange={(e)=> setCargoSelect(e.target.value)}>
+                                {cargo.map(cargo=>
+                                    (<option key={cargo}>
+                                        {cargo}
+                                    </option>
+                                    ))
+                                }
+                            </select>
+                            </div>
 
-                        <div className="col-md-6">
-                        <label>Tipo Contrato</label>
-                        <select className='form-control' OnChange={(e)=> setTipoContratoSelect(e.target.value)}>
-                            {tipoContrato.map(tipoContrato=>
-                                (<option key={tipoContrato}>
-                                    {tipoContrato}
-                                </option>
-                                ))
-                            }
-                        </select>
-                        </div>
+                            <div className="col-md-6">
+                            <label>Tipo Contrato</label>
+                            <select className='form-control' OnChange={(e)=> setTipoContratoSelect(e.target.value)}>
+                                {tipoContrato.map(tipoContrato=>
+                                    (<option key={tipoContrato}>
+                                        {tipoContrato}
+                                    </option>
+                                    ))
+                                }
+                            </select>
+                            </div>
 
-                        <div className="form-group">
-                        <label>Jefe Inmediato</label>
-                        <input type="text" className="form-control required" OnChange={(e)=> setJefeInmediato(e.target.value)} />
+                            <div className="form-group">
+                            <label>Jefe Inmediato</label>
+                            <input type="text" className="form-control required" OnChange={(e)=> setJefeInmediato(e.target.value)} />
+                            </div>
                         </div>
-                    </div>
-                    <br/>
-                    <button type="submit" class="btn btn-outline-info">
-                        <span class="fa fa-save"></span> Guardar
-                    </button>
+                        <br/>
+                        <button type="submit" class="btn btn-outline-info">
+                            <span class="fa fa-save"></span> Guardar
+                        </button>
                     </form>
                 </div>
                 </div>

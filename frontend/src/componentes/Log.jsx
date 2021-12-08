@@ -50,7 +50,7 @@
             console.log (respuesta)
             const mensaje= respuesta.data.mensaje
 
-            if (mensaje !=='BIENVENID@, HAS INICIADO SESION'){
+/*             if (mensaje !=='BIENVENID@, HAS INICIADO SESION'){
 
                 Swal.fire({
                     icon: 'error',
@@ -58,7 +58,7 @@
                     showConfirmButton: false,
                     timer: 4000
                 })
-            }
+            } */
 
             if (mensaje ==='BIENVENID@, HAS INICIADO SESION')
             {
@@ -77,6 +77,14 @@
                     timer: 4000
                 })
                 window.location.href='/Index'
+            }
+            else{
+                Swal.fire({
+                    icon: 'error',
+                    title: 'DATOS INCORRECTOS, VERIFICAR',
+                    showConfirmButton: false,
+                    timer: 4000
+                })
             }
         }
 
