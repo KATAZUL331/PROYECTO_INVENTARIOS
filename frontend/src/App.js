@@ -7,7 +7,7 @@ import Usuario from './componentes/Usuario';
 import UsuarioListado from './componentes/UsuarioListado';
 import ClienteListado from './componentes/ClienteListado';
 import Cliente from './componentes/Cliente';
-import Login from './componentes/Login';
+import Login from './componentes/Log';
 import Index from './componentes/Index'
 
 function App(){
