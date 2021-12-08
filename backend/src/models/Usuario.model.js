@@ -10,6 +10,7 @@ const UsuarioSchema = new Schema({
     cargo: String,
     tipoContrato: String,
     jefeInmediato: String,
+    adminNombre: String,
     date: { type: Date, default: Date.now }
 })
 

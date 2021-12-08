@@ -2,7 +2,8 @@ const AdminCtrl = {}
 const Admin = require('../models/Admin.model')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-    //PETICION
+
+//PETICION
 AdminCtrl.crear = async(req, res) => {
     const { nombre, correo, contrasena } = req.body
     const NuevoAdmin = new Admin({
@@ -24,7 +25,7 @@ AdminCtrl.crear = async(req, res) => {
         await NuevoAdmin.save()
 
         res.json({
-            mensaje: 'BIENVENIDO',
+            mensaje: 'USUARIO REGISTRADO',
             id: NuevoAdmin._id,
             nombre: NuevoAdmin.nombre,
             token
@@ -46,7 +47,7 @@ AdminCtrl.login = async(req, res) => {
             const token = jwt.sign({ _id: admin._id }, 'Secreto')
             res.json({
                 mensaje: 'BIENVENID@, HAS INICIADO SESION',
-                id: admin.id,
+                id: admin._id,
                 nombre: admin.nombre,
                 token
             })
