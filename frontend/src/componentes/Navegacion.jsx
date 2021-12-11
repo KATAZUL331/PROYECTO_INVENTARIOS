@@ -40,22 +40,22 @@ const salida=()=>{
         </Offcanvas.Header>
         <Offcanvas.Body>
             <Nav className="justify-content-end flex-grow-1 pe-3">
-                <NavDropdown title="Perfil" id="offcanvasNavbarDropdown">
-                    <NavDropdown.Item href="/admin"><i class="fas fa-sign-in-alt"></i>  Login</NavDropdown.Item>
-                    <NavDropdown.Item href="/usuario"><i class="far fa-user-circle"></i>  Usuario</NavDropdown.Item>
+                <NavDropdown title="Registro" id="offcanvasNavbarDropdown">
+                    <NavDropdown.Item href="/admin"><i class="fas fa-sign-in-alt"></i>  Registro Usuarios</NavDropdown.Item>
+                    <NavDropdown.Item href="/usuario"><i class="far fa-user-circle"></i>  Registro Empleados</NavDropdown.Item>
                     <NavDropdown.Item href="/cerrar"><i class="fas fa-sign-out-alt"></i>  Cerrar Sesión</NavDropdown.Item>
                 </NavDropdown>
 
                 <NavDropdown title="Sistema" id="offcanvasNavbarDropdown">
-                    <NavDropdown.Item href="/cliente">Clientes</NavDropdown.Item>
-                    <NavDropdown.Item href="#action4">VACIO</NavDropdown.Item>
-                    <NavDropdown.Item href="#action5"></NavDropdown.Item>
+                    <NavDropdown.Item href="/cliente">  Clientes</NavDropdown.Item>
+                    <NavDropdown.Item href="#action4">  Proveedores</NavDropdown.Item>
+                    <NavDropdown.Item href="#action5">  Productos</NavDropdown.Item>
                 </NavDropdown>
 
                 <NavDropdown title="Listados" id="offcanvasNavbarDropdown">
-                    <NavDropdown.Item href="/adminListado">Listado de Administradores</NavDropdown.Item>
-                    <NavDropdown.Item href="/usuarioListado">Listado de Usuarios</NavDropdown.Item>
-                    <NavDropdown.Item href="/clienteListado">listado de Clientes</NavDropdown.Item>
+                    <NavDropdown.Item href="/adminListado"><i class="fas fa-address-book"></i>  Listado de Administradores</NavDropdown.Item>
+                    <NavDropdown.Item href="/usuarioListado">  Listado de empleados</NavDropdown.Item>
+                    <NavDropdown.Item href="/clienteListado">  listado de Clientes</NavDropdown.Item>
                     
                 </NavDropdown>
 

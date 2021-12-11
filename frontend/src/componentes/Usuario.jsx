@@ -9,11 +9,11 @@ export default function Usuario() {
     const [correoElectronico, setCorreoElectronico]=useState('')
     const [telefono, setTelefono]=useState('')
 
-    const [cargo, setCargo]=useState([])//arreglo
-    const [cargoSelect, setCargoSelect]=useState([])//arreglo
+    const [cargo, setCargo]=useState('')//arreglo
+    //const [cargoSelect, setCargoSelect]=useState([])//arreglo
 
-    const [tipoContrato, setTipoContrato]=useState([])//arreglo
-    const [tipoContratoSelect, setTipoContratoSelect]=useState([])//arreglo
+    const [tipoContrato, setTipoContrato]=useState('')//arreglo
+    //const [tipoContratoSelect, setTipoContratoSelect]=useState([])//arreglo
     
     const [jefeInmediato, setJefeInmediato]=useState('')
 
@@ -30,15 +30,16 @@ export default function Usuario() {
             apellidos,
             cedulaUsuario,
             correoElectronico, 
-            cargo:cargoSelect,
+            cargo,//:cargoSelect,
             telefono,
-            tipoContrato:tipoContratoSelect,
+            tipoContrato,//:tipoContratoSelect,
             jefeInmediato,
             admin: sessionStorage.getItem('idUsuario'),
             adminNombre: sessionStorage.getItem('nombre')
         }
 
-/*         if(nombres===''){
+        if(nombres===' '){
+
             Swal.fire({
                 icon: 'error',
                 title: 'Digitar nombres completos',
@@ -46,7 +47,7 @@ export default function Usuario() {
                 timer: 4000
             })
         } 
-        if(apellidos===''){
+        /* else if(apellidos===""){
             Swal.fire({
                 icon: 'error',
                 title: 'Digitar apellidos completos',
@@ -54,7 +55,7 @@ export default function Usuario() {
                 timer: 4000
             })
         } 
-        if(cedulaUsuario===''){
+        else if(cedulaUsuario===""){
             Swal.fire({
                 icon: 'error',
                 title: 'Digitar numero seguido',
@@ -62,7 +63,7 @@ export default function Usuario() {
                 timer: 4000
             })
         }
-        if(correoElectronico===''){
+        else if(correoElectronico===""){
             Swal.fire({
                 icon: 'error',
                 title: 'Digitar correo electronico',
@@ -70,7 +71,7 @@ export default function Usuario() {
                 timer: 4000
             })
         } 
-        if(telefono===''){
+        else if(telefono===""){
             Swal.fire({
                 icon: 'error',
                 title: 'Digitar numero fijo o celular',
@@ -78,17 +79,17 @@ export default function Usuario() {
                 timer: 4000
             })
         } 
-        if(jefeInmediato===''){
+        else if(jefeInmediato===""){
             Swal.fire({
                 icon: 'error',
                 title: 'Digitar nombre completo de su jefe',
                 showConfirmButton: false,
                 timer: 4000
             })
-        }  */
-        //if(Usuario!==''){
+        } */ 
+        else{
             const token = sessionStorage.getItem('token')
-            const respuesta = await Axios.post('/usuario/crear/',Usuario,
+            const respuesta = await Axios.post('/usuario/crear',Usuario,
             {
                 headers: {'autorizar':token}
             })
@@ -109,7 +110,7 @@ export default function Usuario() {
             setCorreoElectronico("");
             setJefeInmediato("");
         }
-    
+    }
 
     return (
         <div className="container mt-4">
@@ -153,6 +154,16 @@ export default function Usuario() {
 
                             <div className="col-md-6">
                             <label>Cargo</label>
+                            <input type="text" className="form-control required" OnChange={(e)=> setCargo(e.target.value)} />
+                            </div>
+
+                            <div className="col-md-6">
+                            <label>Tipo Contrato</label>
+                            <input type="text" className="form-control required" OnChange={(e)=> setTipoContrato(e.target.value)} />
+                            </div>
+
+                            {/* <div className="col-md-6">
+                            <label>Cargo</label>
                             <select className='form-control' OnChange={(e)=> setCargoSelect(e.target.value)}>
                                 {cargo.map(cargo=>
                                     (<option key={cargo}>
@@ -173,8 +184,7 @@ export default function Usuario() {
                                     ))
                                 }
                             </select>
-                            </div>
-
+                            </div> */}
                             <div className="form-group">
                             <label>Jefe Inmediato</label>
                             <input type="text" className="form-control required" OnChange={(e)=> setJefeInmediato(e.target.value)} />
