@@ -15,6 +15,7 @@ app.use(bodyparser.json())
 app.use(cors({ origen: '*' }))
 app.use('/admin', require('./routes/Admin.routes'))
 app.use('/usuario', require('./routes/Usuario.routes'))
+app.use('/producto', require('./routes/Producto.routes'))
 
 app.listen(app.get('Port'), () => {
     console.log('Hola, soy el servidor y estoy escuchando por el puerto', app.get('Port'))

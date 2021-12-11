@@ -6,7 +6,8 @@ const ProductoSchema = new Schema({
     imagen: String,
     precio: String,
     descripcion: String,
-    stock: Number
+    stock: Number,
+    date: { type: Date, default: Date.now }
 
 });
 //CONVERTIR A MODELO
