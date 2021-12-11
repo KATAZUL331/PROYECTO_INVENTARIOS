@@ -3,11 +3,6 @@ const Producto = require('../models/Producto.model')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
-ProductoCtrl.getProducto = async(req, res) => {
-    const Producto = await Producto.find();
-    res.json(Producto);
-}
-
 ProductoCtrl.createProducto = async(req, res) => {
     const { titulo, imagen, precio, descripcion, stock } = req.body;
     const newProducto = new Producto({
@@ -22,7 +17,12 @@ ProductoCtrl.createProducto = async(req, res) => {
     res.json('Producto añadido') //
 }
 
-ProductoCtrl.getArticulo = async(req, res) => {
+ProductoCtrl.getProducto = async(req, res) => {
+    const Producto = await Producto.find();
+    res.json(Producto);
+}
+
+ProductoCtrl.getProducto = async(req, res) => {
     const Producto = await Producto.findById(req.params.id)
     res.json(Producto)
 }
