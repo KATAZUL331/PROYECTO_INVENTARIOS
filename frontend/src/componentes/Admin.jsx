@@ -38,11 +38,12 @@ export default function Admin() {
                 showConfirmButton: false,
                 timer: 4000
             })
-        } 
-        e.target.reset();
+            e.target.reset();
             setNombre('');
             setCorreo('');
             setContrasena('')
+        } 
+        
     }
 
 

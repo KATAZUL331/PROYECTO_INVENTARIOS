@@ -1,14 +1,16 @@
-const Articulo = require('../models/articulo.modelo');
-const articulosCtrl = {};
+const ProductoCtrl = {}
+const Producto = require('../models/Producto.model')
+const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
 
-articulosCtrl.getArticulos = async(req, res) => {
-    const articulos = await Articulo.find();
-    res.json(articulos);
+ProductoCtrl.getProducto = async(req, res) => {
+    const Producto = await Producto.find();
+    res.json(Producto);
 }
 
-articulosCtrl.createArticulo = async(req, res) => {
+ProductoCtrl.createProducto = async(req, res) => {
     const { titulo, imagen, precio, descripcion, stock } = req.body;
-    const newArticulo = new Articulo({
+    const newProducto = new Producto({
         titulo,
         imagen,
         precio,
@@ -16,33 +18,31 @@ articulosCtrl.createArticulo = async(req, res) => {
         stock
 
     });
-    await newArticulo.save();
-    res.json('Articulo añadido')
+    await newProducto.save();
+    res.json('Producto añadido') //
 }
 
-articulosCtrl.getArticulo = async(req, res) => {
-    const articulo = await Articulo.findById(req.params.id)
-    res.json(articulo)
+ProductoCtrl.getArticulo = async(req, res) => {
+    const Producto = await Producto.findById(req.params.id)
+    res.json(Producto)
 }
 
-articulosCtrl.getArticulop = async(req, res) => {
-    const articulo = await Articulo.findByprecio(req.params.precio)
-    res.json(articulo)
+ProductoCtrl.getProductop = async(req, res) => {
+    const Producto = await Producto.findByprecio(req.params.precio)
+    res.json(Producto)
 }
 
-articulosCtrl.deleteArticulo = async(req, res) => {
-    await Articulo.findByIdAndDelete(req.params.id)
-    res.json('Artículo eliminado')
+ProductoCtrl.deleteProducto = async(req, res) => {
+    await Producto.findByIdAndDelete(req.params.id)
+    res.json('Producto eliminado')
 }
 
-articulosCtrl.updateArticulo = async(req, res) => {
+ProductoCtrl.updateProducto = async(req, res) => {
     const { titulo, imagen, descripcion, precio, stock } = req.body;
-    await Articulo.findByIdAndUpdate(req.params.id, { titulo, imagen, descripcion, precio, stock }
+    await Producto.findByIdAndUpdate(req.params.id, { titulo, imagen, descripcion, precio, stock }
 
     )
-    res.json('Artículo actualizado');
+    res.json('Producto actualizado');
 }
 
-
-
-module.exports = articulosCtrl;
+module.exports = ProductoCtrl;
