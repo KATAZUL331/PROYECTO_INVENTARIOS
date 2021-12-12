@@ -71,7 +71,7 @@ export default function RegistrarAdmin() {
                 <div className="container text-center fa-5x">
                   <i className="fas fa-user-plus"></i>
                 </div>
-                <div className="card-header bg-info text-center">
+                <div className="card-header bg-success text-center">
                   <h4>REGISTRO DE ADMINISTRADORES</h4>
                 </div>
                 <div className="card-body">

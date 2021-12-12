@@ -122,7 +122,7 @@ export default function RegistrarUsuario() {
                 <div className="container text-center fa-5x">
                   <i className="fas fa-user-plus"></i>
                 </div>
-                <div className="card-header bg-info text-center">
+                <div className="card-header bg-success text-center">
                   <h4>REGISTRO DE EMPLEADOS</h4>
                 </div>
                 <div className="card-body">

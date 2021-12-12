@@ -41,12 +41,11 @@ const salida=()=>{
         <Offcanvas.Body>
             <Nav className="justify-content-end flex-grow-1 pe-3">
                 <NavDropdown title="Registro" id="offcanvasNavbarDropdown">
-                    <NavDropdown.Item href="/admin"><i class="fas fa-sign-in-alt"></i>  Registro Usuarios</NavDropdown.Item>
-                    <NavDropdown.Item href="/usuario"><i class="far fa-user-circle"></i>  Registro Empleados</NavDropdown.Item>
-                    <NavDropdown.Item href="/cerrar"><i class="fas fa-sign-out-alt"></i>  Cerrar Sesión</NavDropdown.Item>
+                    <NavDropdown.Item href="/admin"><i class="fas fa-sign-in-alt"></i>  Registro de Administradores</NavDropdown.Item>
+                    <NavDropdown.Item href="/usuario"><i class="far fa-user-circle"></i>  Registro de Empleados</NavDropdown.Item>
                 </NavDropdown>
 
-                <NavDropdown title="Sistema" id="offcanvasNavbarDropdown">
+                <NavDropdown title="Base" id="offcanvasNavbarDropdown">
                     <NavDropdown.Item href="/cliente">  Clientes</NavDropdown.Item>
                     <NavDropdown.Item href="#action4">  Proveedores</NavDropdown.Item>
                     <NavDropdown.Item href="#action5">  Productos</NavDropdown.Item>
@@ -59,21 +58,11 @@ const salida=()=>{
                     
                 </NavDropdown>
 
-                <NavDropdown title="Busqueda" id="offcanvasNavbarDropdown">
-                    <NavDropdown.Item href="/registrarPersona">Registro Persona</NavDropdown.Item>
-                    <NavDropdown.Item href="#action4">Another action</NavDropdown.Item>
+                <NavDropdown title="Catálogo" id="offcanvasNavbarDropdown">
+                    <NavDropdown.Item href="#action4">Productos</NavDropdown.Item>
                     <NavDropdown.Item href="#action5"></NavDropdown.Item>
                 </NavDropdown>
             </Nav>
-            <Form className="d-flex">
-            <FormControl
-                type="search"
-                placeholder="Busqueda"
-                className="me-2"
-                aria-label="Search"
-            />
-            <Button variant="outline-success">Busqueda</Button>
-            </Form>
         </Offcanvas.Body>
         </Navbar.Offcanvas>
     </Container>
