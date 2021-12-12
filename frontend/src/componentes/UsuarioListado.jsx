@@ -47,9 +47,9 @@ function BusquedaUsuario() {
 
   const obtenerUsuario= async(idParametro)=>{
     setShow(true)
-    //const id = idParametro
+    const id = idParametro
     const token = sessionStorage.getItem('token')
-    const respuesta = await Axios.get('/usuario/listarUsuario/',{
+    const respuesta = await Axios.get('/usuario/listarUsuario/'+id,{
       headers:{'autorizar':token}
     })
 
