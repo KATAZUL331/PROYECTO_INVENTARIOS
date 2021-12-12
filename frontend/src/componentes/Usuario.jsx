@@ -8,7 +8,7 @@ export default function RegistrarUsuario() {
   const[apellidos,setApellidos]=useState('')
   const[cedulaUsuario,setCedulaUsuario]=useState('')
   const[telefono,setTelefono]=useState('')
-  const[Correo,setCorreo]=useState('')
+  const[correo,setCorreo]=useState('')
   const[jefeInmediato,setJefeInmediato]=useState('')
 
   const[cargo,setCargo]=useState([])
@@ -19,7 +19,7 @@ export default function RegistrarUsuario() {
 
 
   useEffect(()=>{
-    setCargo(['Jefe','Auxiliar','Tecnico','Profesional','Vendedor', 'Comprador'])
+    setCargo(['Auxiliar','Jefe','Tecnico','Profesional','Vendedor', 'Comprador'])
     setCargoSelect('Auxiliar')
 
     setTipoContrato(['Fijo','Prestacion de Servicios','Aprendizaje','Indefinido'])
@@ -33,7 +33,7 @@ export default function RegistrarUsuario() {
       nombres,
       apellidos,
       cedulaUsuario,
-      Correo,
+      correo,
       telefono,
       jefeInmediato,
       cargo:cargoSelect,
@@ -44,17 +44,49 @@ export default function RegistrarUsuario() {
     if(nombres===""){
       Swal.fire({
         icon:'error',
-        title:"Debe escribir un nombre",
+        title:"REGISTRAR NOMBRES",
         showConfirmButton:false,
-        timer:1500
+        timer:2000
       })
     }
     else if(apellidos===""){
       Swal.fire({
         icon:'error',
-        title:"Debe escribir un apellido",
+        title:"REGISTRAR APELLIDOS",
         showConfirmButton:false,
-        timer:1500
+        timer:2000
+      })
+    }
+    else if(cedulaUsuario===""){
+      Swal.fire({
+        icon:'error',
+        title:"REGISTRAR NUMERO DE DOCUMENTO",
+        showConfirmButton:false,
+        timer:2000
+      })
+    }
+    else if(correo===""){
+      Swal.fire({
+        icon:'error',
+        title:"REGISTRAR CORREO ELECTRONICO",
+        showConfirmButton:false,
+        timer:2000
+      })
+    }
+    else if(telefono===""){
+      Swal.fire({
+        icon:'error',
+        title:"REGISTRAR NUMERO DE TELEFONO FIJO/CELULAR",
+        showConfirmButton:false,
+        timer:2000
+      })
+    }
+    else if(jefeInmediato===""){
+      Swal.fire({
+        icon:'error',
+        title:"REGISTRAR SU JEFE INMEDIATO",
+        showConfirmButton:false,
+        timer:2000
       })
     }
     else {
@@ -69,12 +101,16 @@ export default function RegistrarUsuario() {
         icon:'success',
         title:mensaje,
         showConfirmButton:false,
-        timer:1500
+        timer:2000
       })
 
       e.target.reset();
       setNombres("");
       setApellidos("");
+      setCedulaUsuario("");
+      setCorreo("");
+      setTelefono("");
+      setJefeInmediato("");
     }
   }
 
