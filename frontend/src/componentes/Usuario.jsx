@@ -1,204 +1,162 @@
-import React, {useState, useEffect} from 'react'
-import Axios from 'axios';
+//import React, { useEffect,useState} from 'react'
+import React, { useState,useEffect } from 'react'
 import Swal from 'sweetalert2'
+import Axios from 'axios'
 
-export default function Usuario() {
-    const [nombres, setNombres]=useState('')
-    const [apellidos, setApellidos]=useState('')
-    const [cedulaUsuario, setCedulaUsuario]=useState('')
-    const [correoElectronico, setCorreoElectronico]=useState('')
-    const [telefono, setTelefono]=useState('')
+export default function RegistrarUsuario() {
+  const[nombres,setNombres]=useState('')
+  const[apellidos,setApellidos]=useState('')
+  const[cedulaUsuario,setCedulaUsuario]=useState('')
+  const[telefono,setTelefono]=useState('')
+  const[Correo,setCorreo]=useState('')
+  const[jefeInmediato,setJefeInmediato]=useState('')
 
-    const [cargo, setCargo]=useState('')//arreglo
-    //const [cargoSelect, setCargoSelect]=useState([])//arreglo
+  const[cargo,setCargo]=useState([])
+  const[cargoSelect,setCargoSelect]=useState([])
+  
+  const[tipoContrato,setTipoContrato]=useState([])
+  const[tipoContratoSelect,setTipoContratoSelect]=useState([])
 
-    const [tipoContrato, setTipoContrato]=useState('')//arreglo
-    //const [tipoContratoSelect, setTipoContratoSelect]=useState([])//arreglo
-    
-    const [jefeInmediato, setJefeInmediato]=useState('')
 
-    useEffect(()=>{
-        setCargo(['Seleccionar Dato','Tecnico','Administrador','Auxiliar', 'Jefe'])
+  useEffect(()=>{
+    setCargo(['Jefe','Auxiliar','Tecnico','Profesional','Vendedor', 'Comprador'])
+    setCargoSelect('Auxiliar')
 
-        setTipoContrato  (['Seleccionar Dato', 'Término Fijo','Término indefinido','Obra o labor','Prestacion de Servicios','Aprendizaje'])
-    },[])
+    setTipoContrato(['Fijo','Prestacion de Servicios','Aprendizaje','Indefinido'])
+    setTipoContratoSelect('Fijo')
+  },[])
 
-    const GuardarUsuario=async(e)=>{
-        e.preventDefault()
-            const Usuario={
-            nombres,
-            apellidos,
-            cedulaUsuario,
-            correoElectronico, 
-            cargo,//:cargoSelect,
-            telefono,
-            tipoContrato,//:tipoContratoSelect,
-            jefeInmediato,
-            admin: sessionStorage.getItem('idUsuario'),
-            adminNombre: sessionStorage.getItem('nombre')
-        }
 
-        if(nombres===' '){
-
-            Swal.fire({
-                icon: 'error',
-                title: 'Digitar nombres completos',
-                showConfirmButton: false,
-                timer: 4000
-            })
-        } 
-        /* else if(apellidos===""){
-            Swal.fire({
-                icon: 'error',
-                title: 'Digitar apellidos completos',
-                showConfirmButton: false,
-                timer: 4000
-            })
-        } 
-        else if(cedulaUsuario===""){
-            Swal.fire({
-                icon: 'error',
-                title: 'Digitar numero seguido',
-                showConfirmButton: false,
-                timer: 4000
-            })
-        }
-        else if(correoElectronico===""){
-            Swal.fire({
-                icon: 'error',
-                title: 'Digitar correo electronico',
-                showConfirmButton: false,
-                timer: 4000
-            })
-        } 
-        else if(telefono===""){
-            Swal.fire({
-                icon: 'error',
-                title: 'Digitar numero fijo o celular',
-                showConfirmButton: false,
-                timer: 4000
-            })
-        } 
-        else if(jefeInmediato===""){
-            Swal.fire({
-                icon: 'error',
-                title: 'Digitar nombre completo de su jefe',
-                showConfirmButton: false,
-                timer: 4000
-            })
-        } */ 
-        else{
-            const token = sessionStorage.getItem('token')
-            const respuesta = await Axios.post('/usuario/crear',Usuario,
-            {
-                headers: {'autorizar':token}
-            })
-            const mensaje=respuesta.data.mensaje
-            console.log(mensaje)
-
-            Swal.fire({
-                icon: 'success',
-                title: mensaje,
-                showConfirmButton: false,
-                timer: 4000
-            })
-            e.target.reset();
-            setNombres("");
-            setApellidos("");
-            setCedulaUsuario("");
-            setTelefono("");
-            setCorreoElectronico("");
-            setJefeInmediato("");
-        }
+  const guardar = async(e)=>{
+    e.preventDefault()
+    const usuario= {
+      nombres,
+      apellidos,
+      cedulaUsuario,
+      Correo,
+      telefono,
+      jefeInmediato,
+      cargo:cargoSelect,
+      tipoContrato: tipoContratoSelect,
+      admin: sessionStorage.getItem('idAdmin'),
+      adminNombre :sessionStorage.getItem('nombre')
     }
+    if(nombres===""){
+      Swal.fire({
+        icon:'error',
+        title:"Debe escribir un nombre",
+        showConfirmButton:false,
+        timer:1500
+      })
+    }
+    else if(apellidos===""){
+      Swal.fire({
+        icon:'error',
+        title:"Debe escribir un apellido",
+        showConfirmButton:false,
+        timer:1500
+      })
+    }
+    else {
+      const token = sessionStorage.getItem('token')
+      const respuesta = await Axios.post('/usuario/crear',usuario,{
+      headers:{'autorizar':token}
+      })
+      const mensaje= respuesta.data.mensaje
+      console.log(mensaje)
 
-    return (
-        <div className="container mt-4">
-        <div className="row">
+      Swal.fire({
+        icon:'success',
+        title:mensaje,
+        showConfirmButton:false,
+        timer:1500
+      })
+
+      e.target.reset();
+      setNombres("");
+      setApellidos("");
+    }
+  }
+
+  return (
+  <div className="container mt-4">
+          <div className="row">
             <div className="col-md-7  mx-auto">
-                <div className="card">
+              <div className="card">
                 <div className="container text-center fa-5x">
-                    <i className="fas fa-user-plus"></i>
+                  <i className="fas fa-user-plus"></i>
                 </div>
                 <div className="card-header bg-info text-center">
-                    <h4>REGISTRO DE USUARIOS</h4>
+                  <h4>REGISTRO DE EMPLEADOS</h4>
                 </div>
                 <div className="card-body">
-                    <form onSubmit={GuardarUsuario}>
-                        <div className="row">
+                  <form onSubmit={guardar}>
+                    <div className="row">
 
-                            <div className="col-md-6">
-                            <label>Documento de Identidad</label>
-                            <input type="text" className="form-control required" OnChange={(e)=> setCedulaUsuario(e.target.value)} />
-                            </div>
+                      <div className="col-md-6">
+                        <label>Nombres</label>
+                        <input type="text" className="form-control required" onChange={(e)=>setNombres(e.target.value)} />
+                      </div>
 
-                            <div className="form-group">
-                            <label>Nombres Completos</label>
-                            <input type="text" className="form-control required" OnChange={(e)=> setNombres(e.target.value)} />
-                            </div>
+                      <div className="col-md-6">
+                        <label>Apellidos</label>
+                        <input type="text" className="form-control required" onChange={(e)=>setApellidos(e.target.value)} />
+                      </div>
 
-                            <div className="form-group">
-                            <label>Apellidos Completos</label>
-                            <input type="text" className="form-control required" OnChange={(e)=> setApellidos(e.target.value)} />
-                            </div>
+                      <div className="col-md-6">
+                        <label>Documento de Identidad</label>
+                        <input type="text" className="form-control required" onChange={(e)=>setCedulaUsuario(e.target.value)} />
+                      </div>
 
-                            <div className="col-md-6">
-                            <label>Correo Electrónico</label>
-                            <input type="text" className="form-control required" OnChange={(e)=> setCorreoElectronico(e.target.value)} />
-                            </div>
+                      <div className="col-md-6">
+                        <label>Correo Electronico</label>
+                        <input type="text" className="form-control required" onChange={(e)=>setCorreo(e.target.value)} />
+                      </div>
 
-                            <div className="col-md-6">
-                            <label>telefono/celular</label>
-                            <input type="text" className="form-control required" OnChange={(e)=> setTelefono(e.target.value)} />
-                            </div>
+                      <div className="col-md-6">
+                        <label>Telefono</label>
+                        <input type="text" className="form-control required" onChange={(e)=>setTelefono(e.target.value)} />
+                      </div>
 
-                            <div className="col-md-6">
-                            <label>Cargo</label>
-                            <input type="text" className="form-control required" OnChange={(e)=> setCargo(e.target.value)} />
-                            </div>
+                      <div className="col-md-6">
+                        <label>Cargo</label>
+                        <select className='form-control' onChange={(e) => setCargoSelect(e.target.value)}>
+                          {cargo.map(cargo => (
+                                  <option key={cargo}>
+                                      {cargo}
+                                  </option>
+                          ))
+                          }
+                        </select>
+                      </div>
 
-                            <div className="col-md-6">
-                            <label>Tipo Contrato</label>
-                            <input type="text" className="form-control required" OnChange={(e)=> setTipoContrato(e.target.value)} />
-                            </div>
-
-                            {/* <div className="col-md-6">
-                            <label>Cargo</label>
-                            <select className='form-control' OnChange={(e)=> setCargoSelect(e.target.value)}>
-                                {cargo.map(cargo=>
-                                    (<option key={cargo}>
-                                        {cargo}
-                                    </option>
-                                    ))
-                                }
-                            </select>
-                            </div>
-
-                            <div className="col-md-6">
-                            <label>Tipo Contrato</label>
-                            <select className='form-control' OnChange={(e)=> setTipoContratoSelect(e.target.value)}>
-                                {tipoContrato.map(tipoContrato=>
-                                    (<option key={tipoContrato}>
+                      <div className="col-md-6">
+                        <label>Tipo de Contrato</label>
+                        <select className='form-control' onChange={(e) => setTipoContratoSelect(e.target.value)}>
+                            {
+                                tipoContrato.map(tipoContrato => (
+                                    <option key={tipoContrato}>
                                         {tipoContrato}
-                                    </option>
-                                    ))
-                                }
+                                  </option>
+                                ))
+                            }
                             </select>
-                            </div> */}
-                            <div className="form-group">
-                            <label>Jefe Inmediato</label>
-                            <input type="text" className="form-control required" OnChange={(e)=> setJefeInmediato(e.target.value)} />
-                            </div>
-                        </div>
-                        <br/>
-                        <button type="submit" class="btn btn-outline-info">
-                            <span class="fa fa-save"></span> Guardar
-                        </button>
-                    </form>
+                      </div>
+
+                      <div className="col-md-6">
+                        <label>Jefe Inmediato</label>
+                        <input type="text" className="form-control required" onChange={(e)=>setJefeInmediato(e.target.value)} />
+                      </div>
+                    </div>
+                      <br />
+                    <button type="submit" class="btn btn-outline-info">
+                      <span class="fa fa-save"></span> Guardar Empleado
+                    </button>
+                  </form>
                 </div>
-                </div>
+              </div>
             </div>
-            </div>
+          </div>
         </div>
-    )
+  );
 }

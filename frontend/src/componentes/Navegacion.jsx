@@ -60,7 +60,7 @@ const salida=()=>{
                 </NavDropdown>
 
                 <NavDropdown title="Busqueda" id="offcanvasNavbarDropdown">
-                    <NavDropdown.Item href="/registroPersona">Registro Persona</NavDropdown.Item>
+                    <NavDropdown.Item href="/registrarPersona">Registro Persona</NavDropdown.Item>
                     <NavDropdown.Item href="#action4">Another action</NavDropdown.Item>
                     <NavDropdown.Item href="#action5"></NavDropdown.Item>
                 </NavDropdown>

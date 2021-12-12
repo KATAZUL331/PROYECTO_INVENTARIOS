@@ -7,7 +7,7 @@ import Usuario from './componentes/Usuario';
 import UsuarioListado from './componentes/UsuarioListado';
 import ClienteListado from './componentes/ClienteListado';
 import Cliente from './componentes/Cliente';
-import RegistrarPersona from './componentes/RegistrarPersona';
+import RegistrarPersona from './componentes/Usuario';
 import Login from './componentes/Log';
 import Index from './componentes/Index';
 
@@ -19,14 +19,14 @@ function App(){
 
         <Navegacion/>
         <Route path='/' exact component={Login}/>
-        <Route path='index' exact component={Index}/>
+        <Route path='index' exact ccdomponent={Index}/>
         <Route path='/admin' exact component={Admin}/>
         <Route path='/adminListado' exact component={AdminListado}/>
         <Route path='/usuario' exact component={Usuario}/>
         <Route path='/usuarioListado' exact component={UsuarioListado}/>
         <Route path='/cliente' exact component={Cliente}/>
         <Route path='/clienteListado' exact component={ClienteListado}/>
-
+        <Route path='/registrarPersona' exact component={RegistrarPersona}/>
         
     </Router>
     );
