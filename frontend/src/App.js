@@ -8,7 +8,9 @@ import UsuarioListado from './componentes/UsuarioListado';
 import ClienteListado from './componentes/ClienteListado';
 import Cliente from './componentes/Cliente';
 import Login from './componentes/Log';
-import Index from './componentes/Index'
+import Index from './componentes/Index';
+import RegistrarPersona from './componentes/RegistrarPersona'
+
 
 function App(){
     return (
