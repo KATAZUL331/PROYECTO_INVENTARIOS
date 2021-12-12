@@ -5,7 +5,7 @@ const UsuarioSchema = new Schema({
     nombres: String,
     apellidos: String,
     cedulaUsuario: Number,
-    correoElectronico: String,
+    correo: String,
     telefono: Number,
     cargo: String,
     tipoContrato: String,

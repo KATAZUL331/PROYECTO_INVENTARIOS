@@ -22,9 +22,8 @@ function BusquedaUsuario() {
   const [tipoContratoSelect,setTipoContratoSelect]=useState([])
 
   const [show, setShow] = useState(false);
-
   const handleClose = () => setShow(false);
-  //const handleShow = () => setShow(true);
+  const handleShow = () => setShow(true);
 
 
   useEffect(()=>{
@@ -35,7 +34,7 @@ function BusquedaUsuario() {
 
 
   const obtenerUsuarios = async()=>{
-
+  
     const id = sessionStorage.getItem('idUsuario')
     const token = sessionStorage.getItem('token')
     const respuesta = await Axios.get('/usuario/listarPorAdministrador/'+id,{
@@ -45,15 +44,16 @@ function BusquedaUsuario() {
     setUsuario(respuesta.data)
   }
 
-  const obtenerUsuario= async(idParametro)=>{
+  const obtenerUsuario = async(idParametro)=>{
     setShow(true)
     const id = idParametro
     const token = sessionStorage.getItem('token')
-    const respuesta = await Axios.get('/usuario/listarUsuario/'+id,{
+    const respuesta = await Axios.get('/usuario/listarId/'+id,{
       headers:{'autorizar':token}
     })
 
     console.log(respuesta.data)
+
     setIdUsuario(respuesta.data._id)
     setNombres(respuesta.data.nombres)
     setApellidos(respuesta.data.apellidos)
@@ -65,8 +65,7 @@ function BusquedaUsuario() {
     setTipoContratoSelect(respuesta.data.tipoContrato)
   }
 
-
-  const actualizar= async (e)=>{
+  const actualizar = async (e)=>{
     e.preventDefault();
     const id = idUsuario
     const token = sessionStorage.getItem('token')
@@ -81,7 +80,7 @@ function BusquedaUsuario() {
       tipoContrato: tipoContratoSelect
     }
 
-    const respuesta = await Axios.put('/usuario/actualizarDatoUsuario/'+id,usuario,{
+    const respuesta = await Axios.put('/usuario/actualizarDatoUsuario/'+ id,usuario,{
       headers:{'autorizar':token}
     })
     const mensaje = respuesta.data.mensaje
@@ -91,16 +90,15 @@ function BusquedaUsuario() {
       icon:'success',
       title:mensaje,
       showConfirmButton:false,
-      timer:1500
+      timer:2000
     })
     setShow(false)
   }
 
-
   const eliminar = async (id)=>{
     const token = sessionStorage.getItem('token')
     const respuesta = await Axios.delete('/usuario/eliminarUsuario/'+id,{
-      headers:{'autorizacion':token}
+      headers:{'autorizar':token}
     })
     const mensaje = respuesta.data.mensaje
     Swal.fire({
@@ -109,7 +107,7 @@ function BusquedaUsuario() {
       showConfirmButton:false,
       timer:1500
     })
-  obtenerUsuario()
+  obtenerUsuarios()
   }
 
   const data =
@@ -145,7 +143,7 @@ function BusquedaUsuario() {
         data={data}       
         options={{
           search: true,
-          actionsColumnIndex:-1,
+          actionsColumnIndex:-0,
           initialPage:1
         }}
         actions={[
@@ -156,17 +154,17 @@ function BusquedaUsuario() {
           },
           {
             icon:'edit',
-            tooltip:'editar',
-            onClick:(event,rowData)=>obtenerUsuarios(rowData.id)
+            tooltip:'Editar',
+            onClick:(event,rowData)=>obtenerUsuario(rowData.id)
           }
         ]}
       />
 
-        <Modal size="lg" show={show} onHide={handleClose}>
-                <Modal.Header closeButton>
-                  <Modal.Title>Editar Empleado</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
+      <Modal size="lg" show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Editar Empleado</Modal.Title>
+            </Modal.Header>
+              <Modal.Body>
 
           <div className="container mt-4">
             <div className="row">
@@ -184,44 +182,43 @@ function BusquedaUsuario() {
 
                         <div className="col-md-6">
                           <label>Nombres</label>
-                          <input type="text" className="form-control required" onChange={(e)=>setNombres(e.target.value)} />
+                          <input type="text" className="form-control required" onChange={(e)=>setNombres(e.target.value)} value={nombres}/>
                         </div>
 
                         <div className="col-md-6">
                           <label>Apellidos</label>
-                          <input type="text" className="form-control required" onChange={(e)=>setApellidos(e.target.value)} />
+                          <input type="text" className="form-control required" onChange={(e)=>setApellidos(e.target.value)} value={apellidos}/>
                         </div>
 
                         <div className="col-md-6">
                           <label>Documento de Identidad</label>
-                          <input type="text" className="form-control required" onChange={(e)=>setCedulaUsuario(e.target.value)} />
+                          <input type="text" className="form-control required" onChange={(e)=>setCedulaUsuario(e.target.value)} value={cedulaUsuario} />
                         </div>
 
                         <div className="col-md-6">
                           <label>Correo Electronico</label>
-                          <input type="text" className="form-control required" onChange={(e)=>setCorreo(e.target.value)} />
+                          <input type="text" className="form-control required" onChange={(e)=>setCorreo(e.target.value)} value={correo}/>
                         </div>
 
                         <div className="col-md-6">
                           <label>Telefono</label>
-                          <input type="text" className="form-control required" onChange={(e)=>setTelefono(e.target.value)} />
+                          <input type="text" className="form-control required" onChange={(e)=>setTelefono(e.target.value)} value={telefono}/>
                         </div>
 
                         <div className="col-md-6">
                           <label>Cargo</label>
-                          <select className='form-control' onChange={(e) => setCargoSelect(e.target.value)}>
+                          <select className='form-control' onChange={(e) => setCargoSelect(e.target.value)} value={cargoSelect}>
                             {cargo.map(cargo => (
                                     <option key={cargo}>
-                                        {cargo}
+                                      {cargo}
                                     </option>
-                            ))
-                            }
+                            ))}
                           </select>
                         </div>
 
                         <div className="col-md-6">
                           <label>Tipo de Contrato</label>
-                          <select className='form-control' onChange={(e) => setTipoContratoSelect(e.target.value)}>
+                          <select className='form-control' onChange={(e) => setTipoContratoSelect(e.target.value)} value={tipoContratoSelect} >
                               {
                                   tipoContrato.map(tipoContrato => (
                                       <option key={tipoContrato}>
@@ -234,20 +231,17 @@ function BusquedaUsuario() {
 
                         <div className="col-md-6">
                           <label>Jefe Inmediato</label>
-                          <input type="text" className="form-control required" onChange={(e)=>setJefeInmediato(e.target.value)} />
+                          <input type="text" className="form-control required" onChange={(e)=>setJefeInmediato(e.target.value)} value={jefeInmediato}/>
                         </div>
                       </div>
                         <br />
-                      <button type="submit" class="btn btn-outline-info">
-                        <span class="fa fa-save"></span> Guardar Empleado
-                      </button>
                     </form>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-    );
+
                 </Modal.Body>
                 <Modal.Footer>
                   <Button variant="secondary" onClick={handleClose}>
@@ -259,6 +253,7 @@ function BusquedaUsuario() {
                 </Modal.Footer>
               </Modal>          
       </div>
-)}
+    )
+}
 
-  export default BusquedaUsuario
+export default BusquedaUsuario
