@@ -121,7 +121,6 @@ export default function RegistrarPersona() {
                       <div className="col-md-6">
                         <label>Tipo de Contrato</label>
                         <select className='form-control' onChange={(e) => setTipoContratoSelect(e.target.value)}>
-
                             {
                                 tipoContrato.map(tipoContrato => (
                                     <option key={tipoContrato}>
@@ -134,7 +133,6 @@ export default function RegistrarPersona() {
                     </div>
                       <br />
                     <button type="submit" class="btn btn-outline-info">
-                        
                       <span class="fa fa-save"></span> Guardar Empleado
                     </button>
                   </form>
