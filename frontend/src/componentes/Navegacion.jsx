@@ -48,7 +48,7 @@ const salida=()=>{
                 <NavDropdown title="Base" id="offcanvasNavbarDropdown">
                     <NavDropdown.Item href="/cliente">  Clientes</NavDropdown.Item>
                     <NavDropdown.Item href="#action4">  Proveedores</NavDropdown.Item>
-                    <NavDropdown.Item href="#action5">  Productos</NavDropdown.Item>
+                    <NavDropdown.Item href="/producto">  Productos</NavDropdown.Item>
                 </NavDropdown>
 
                 <NavDropdown title="Listados" id="offcanvasNavbarDropdown">
