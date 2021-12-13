@@ -52,7 +52,7 @@ const salida=()=>{
 
                 <NavDropdown title="Listados" id="offcanvasNavbarDropdown">
                     <NavDropdown.Item href="/adminListado"><i class="fa fa-folder-open"></i>  Listado de Administradores</NavDropdown.Item>
-                    <NavDropdown.Item href="/usuarioListado"><i class="fa fa-folder-open"></i>  Listado de empleados</NavDropdown.Item>
+                    <NavDropdown.Item href="/usuarioListado"><i class="fa fa-folder-open"></i>  Listado de Empleados</NavDropdown.Item>
                     <NavDropdown.Item href="/clienteListado"><i class="fa fa-folder-open"></i>  listado de Clientes</NavDropdown.Item>
                     <NavDropdown.Item href="/proveedorListado"><i class="fa fa-folder-open"></i>  listado de Proveedores</NavDropdown.Item>
                 </NavDropdown>
