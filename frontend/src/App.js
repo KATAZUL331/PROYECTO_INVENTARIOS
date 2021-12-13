@@ -18,7 +18,7 @@ function App(){
 
         <Navegacion/>
         <Route path='/' exact component={Login}/>
-        <Route path='index' exact ccdomponent={Index}/>
+        <Route path='/index' exact component={Index}/>
         <Route path='/admin' exact component={Admin}/>
         <Route path='/adminListado' exact component={AdminListado}/>
         <Route path='/usuario' exact component={Usuario}/>

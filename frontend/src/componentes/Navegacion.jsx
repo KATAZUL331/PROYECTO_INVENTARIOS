@@ -45,16 +45,18 @@ const salida=()=>{
                     <NavDropdown.Item href="/usuario"><i class="far fa-user-circle"></i>  Registro de Empleados</NavDropdown.Item>
                 </NavDropdown>
 
-                <NavDropdown title="Base" id="offcanvasNavbarDropdown">
-                    <NavDropdown.Item href="/cliente">  Clientes</NavDropdown.Item>
-                    <NavDropdown.Item href="#action4">  Proveedores</NavDropdown.Item>
-                    <NavDropdown.Item href="#action5">  Productos</NavDropdown.Item>
+                <NavDropdown title="Empresa" id="offcanvasNavbarDropdown">
+                    <NavDropdown.Item href="/cliente"><i class="far fa-address-card"></i>  Clientes</NavDropdown.Item>
+                    <NavDropdown.Item href="#action4"><i class="far fa-address-card"></i>  Proveedores</NavDropdown.Item>
+                    <NavDropdown.Item href="#action5"><i class="far fa-address-card"></i>  Productos</NavDropdown.Item>
                 </NavDropdown>
 
                 <NavDropdown title="Listados" id="offcanvasNavbarDropdown">
-                    <NavDropdown.Item href="/adminListado"><i class="fas fa-address-book"></i>  Listado de Administradores</NavDropdown.Item>
-                    <NavDropdown.Item href="/usuarioListado">  Listado de empleados</NavDropdown.Item>
-                    <NavDropdown.Item href="/clienteListado">  listado de Clientes</NavDropdown.Item>
+                    <NavDropdown.Item href="/adminListado"><i class="fa fa-folder-open"></i>  Listado de Administradores</NavDropdown.Item>
+                    <NavDropdown.Item href="/usuarioListado"><i class="fa fa-folder-open"></i>  Listado de empleados</NavDropdown.Item>
+                    <NavDropdown.Item href="/clienteListado"><i class="fa fa-folder-open"></i>  listado de Clientes</NavDropdown.Item>
+                    <NavDropdown.Item href="/clienteListado"><i class="fa fa-folder-open"></i>  listado de Proveedores</NavDropdown.Item>
+                    
                     
                 </NavDropdown>
 
