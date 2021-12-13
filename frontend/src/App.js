@@ -9,6 +9,7 @@ import ClienteListado from './componentes/ClienteListado';
 import Cliente from './componentes/Cliente';
 import Login from './componentes/Log';
 import Index from './componentes/Index';
+import Producto from './componentes/Producto';
 
 
 
@@ -25,6 +26,10 @@ function App(){
         <Route path='/usuarioListado' exact component={UsuarioListado}/>
         <Route path='/cliente' exact component={Cliente}/>
         <Route path='/clienteListado' exact component={ClienteListado}/>
+        <Route path='/producto' exact component={Producto}/>
+        <Route path='/producto/' exact component={Producto}/>
+
+
         
         
     </Router>

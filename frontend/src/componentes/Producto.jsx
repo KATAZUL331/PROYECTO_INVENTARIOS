@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Col, Container } from "reactstrap";
+import axios from 'axios';
 
 export default class CrearProducto extends Component {
     constructor() {
@@ -21,11 +22,17 @@ export default class CrearProducto extends Component {
     this.setState({[name]: value,});
     }
 
-    componentDidMount() {
-        this.fetchProductos();}
+    async componentDidMount() {
+        const token = sessionStorage.getItem('token')
+        const res = await axios.get('http://localhost:4000/producto/listarProducto',{
+        headers:{'autorizar':token}
+        })
+        console.log(res)
+        this.fetchProductos();
+    }
 
     fetchProductos() {
-        fetch("https://backend3157.herokuapp.com/api/articulos")
+        fetch("/producto/listarProducto/")
         .then((res) => res.json())
         .then((data) => {
             this.setState({ productos: data });
@@ -72,7 +79,7 @@ export default class CrearProducto extends Component {
         e.preventDefault();
         if (this.state._id) {
         fetch(
-            `https://backend3157.herokuapp.com/api/articulos/${this.state._id}`,
+            `/producto/crearProducto/${this.state._id}`,
             {
             method: "PUT",
             body: JSON.stringify({
@@ -103,12 +110,12 @@ export default class CrearProducto extends Component {
             this.fetchProductos();
             });
         } else {
-        fetch("https://backend3157.herokuapp.com/api/articulos", {
+        fetch("/producto/crearProducto", {
             method: "POST",
             body: JSON.stringify(this.state),
             headers: {
-            "x-access-token": localStorage.getItem("tok"),
-            Accept: "application/json",
+            "x-access-token": localStorage.getItem("token"),
+            Accept: "autorizar",
             "Content-Type": "application/json",
             },
         })
