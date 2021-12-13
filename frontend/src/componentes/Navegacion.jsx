@@ -56,6 +56,10 @@ const salida=()=>{
                     <NavDropdown.Item href="/clienteListado"><i class="fa fa-folder-open"></i>  listado de Clientes</NavDropdown.Item>
                     <NavDropdown.Item href="/proveedorListado"><i class="fa fa-folder-open"></i>  listado de Proveedores</NavDropdown.Item>
                 </NavDropdown>
+
+                <NavDropdown title="Catalogo" id="offcanvasNavbarDropdown">
+                    <NavDropdown.Item href="/catalogo"><i class="far fa-address-card"></i>  Catalogo Productos</NavDropdown.Item>
+                    </NavDropdown>
             </Nav>
         </Offcanvas.Body>
         </Navbar.Offcanvas>

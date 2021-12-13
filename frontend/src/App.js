@@ -12,7 +12,7 @@ import ProveedorListado from './componentes/ProveedorListado';
 import Login from './componentes/Log';
 import Index from './componentes/Index';
 import Producto from './componentes/Producto';
-
+import Catalogo from './componentes/Catalogo';
 
 function App(){
     return (
@@ -30,6 +30,7 @@ function App(){
         <Route path='/proveedor' exact component={Proveedor}/>
         <Route path='/proveedorListadp' exact component={ProveedorListado}/>
         <Route path='/producto' exact component={Producto}/>
+        <Route path='/catalogo' exact component={Catalogo}/>
     </Router>
     );
 }
