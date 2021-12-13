@@ -72,9 +72,7 @@ export default function Catalogo () {
           }))
           console.log(data)
           }
-<<<<<<< HEAD
-        )
-
+      
         return (
             <Container>
                 <Row>
@@ -82,29 +80,6 @@ export default function Catalogo () {
                 </Row>
                 </Container>
         )
-=======
-        
-          const obtenerProductos = async(idParametro)=>{
-            setShow(true)
-            const id = idParametro
-            const token = sessionStorage.getItem('token')
-            const respuesta = await axios.get('/producto/listarProductoId/'+id,{
-              headers:{'autorizar':token}
-            })
-        
-            console.log(respuesta.data)
-        
-            setIdProducto(respuesta.data._id)
-            setTitulo(respuesta.data.titulo)
-            setImagen(respuesta.data.imagen)
-            setDescripcion(respuesta.data.descripcion)
-            setStock(respuesta.data.stock)
-            
-          }
-        obtenerProducto()
-        
-        
->>>>>>> 923acf4f802b3aecb7ee6edc422640477c091371
     }
     //console.log(Producto.obtenerProducto.data)
     var arrayComponente= producto.map( (listaProductos, i) =>{
