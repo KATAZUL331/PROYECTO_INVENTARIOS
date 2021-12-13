@@ -28,11 +28,8 @@ function App(){
         <Route path='/cliente' exact component={Cliente}/>
         <Route path='/clienteListado' exact component={ClienteListado}/>
         <Route path='/proveedor' exact component={Proveedor}/>
+        <Route path='/proveedorListadp' exact component={ProveedorListado}/>
         <Route path='/producto' exact component={Producto}/>
-
-
-        
-        
     </Router>
     );
 }

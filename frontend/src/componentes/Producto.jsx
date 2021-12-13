@@ -1,10 +1,7 @@
 import React, { useState,useEffect } from "react";
-import MaterialTable from 'material-table'
-import { IconName } from "react-icons/fi";
 import { Col, Container } from "reactstrap";
 import Swal from 'sweetalert2'
 import axios from 'axios';
-import { Modal,Button } from 'react-bootstrap';
 
 export default function NuevoProducto () {
 
@@ -96,7 +93,7 @@ export default function NuevoProducto () {
         return (
         <Container>
             <Col sm="6">
-            <h4>Nuevo Producto</h4>
+            <h4>PRODUCTO</h4>
             <form onSubmit={crearProducto}>
                 <div className="mb-3">
                 <input
@@ -154,7 +151,7 @@ export default function NuevoProducto () {
                 <tr>
                     <th>Titulo</th>
                     <th>Imagen</th>
-                    <th>Desripcion</th>
+                    <th>Descripcion</th>
                     <th>Precio</th>
                     <th>Stock</th>
                 </tr>
@@ -192,6 +189,4 @@ export default function NuevoProducto () {
             </Col>
         </Container>
         );
-    
-    
 }
