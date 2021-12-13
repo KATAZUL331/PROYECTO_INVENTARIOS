@@ -1,6 +1,5 @@
 import React, { useState,useEffect } from "react";
-import MaterialTable from 'material-table'
-import { IconName } from "react-icons/fi";
+import MaterialTable from 'material-table';
 import { Col, Container } from "reactstrap";
 import Swal from 'sweetalert2'
 import axios from 'axios';
