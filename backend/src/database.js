@@ -1,8 +1,8 @@
 //CODIGO PARA BASE LOCAL
 const mongoose = require('mongoose')
-URI = ('mongodb://localhost/bdNivelacion')
+    //URI = ('mongodb://localhost/bdNivelacion')
 
-//URI = ('mongodb+srv://KATAZUL:821231@base.rgbch.mongodb.net/MASTERSYSTEM?retryWrites=true&w=majority')
+URI = ('mongodb+srv://KATAZUL:821231@base.rgbch.mongodb.net/MASTERSYSTEM?retryWrites=true&w=majority')
 
 mongoose.connect(URI, {
         useNewUrlParser: true,
