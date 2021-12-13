@@ -27,7 +27,6 @@ function App(){
         <Route path='/cliente' exact component={Cliente}/>
         <Route path='/clienteListado' exact component={ClienteListado}/>
         <Route path='/producto' exact component={Producto}/>
-        <Route path='/producto/' exact component={Producto}/>
 
 
         
