@@ -5,31 +5,34 @@ const jwt = require('jsonwebtoken')
     //PETICION
 ProveedorCtrl.crear = async(req, res) => {
     const {
-        nombres,
-        apellidos,
-        cedulaProveedor,
+        nitEmpresa,
+        nombreEmpresa,
+        direccionEmpresa,
         tipoPersona,
-        genero,
-        correo,
-        telefono,
-        cargo,
-        empresa,
-        direccion,
-        fechaNacimiento,
+        cedulaRepresentante,
+        nombreRepresentante,
+        telefonoRepresentante,
+        correoRepresentante,
+        cedulaContacto,
+        nombreContacto,
+        telefonoContacto,
+        correoContacto,
         adminNombre
     } = req.body
     const NuevoProveedor = new Proveedor({
-        nombres,
-        apellidos,
-        cedulaProveedor,
+        nitEmpresa,
+        nombreEmpresa,
+        direccionEmpresa,
         tipoPersona,
-        genero,
-        correo,
-        telefono,
-        cargo,
-        empresa,
-        direccion,
-        fechaNacimiento,
+        cedulaRepresentante,
+        nombreRepresentante,
+        telefonoRepresentante,
+        correoRepresentante,
+        cedulaContacto,
+        nombreContacto,
+        telefonoContacto,
+        correoContacto,
+        adminNombre
     })
     const respuesta = await NuevoProveedor.save()
     res.json({
@@ -38,7 +41,7 @@ ProveedorCtrl.crear = async(req, res) => {
     })
 }
 
-//lISTADO DE Proveedor
+//lISTADO DE PROVEEDOR
 
 ProveedorCtrl.listarProveedor = async(req, res) => {
     const respuesta = await Proveedor.find()

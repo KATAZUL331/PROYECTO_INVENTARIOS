@@ -2,17 +2,18 @@ const mongoose = require('mongoose')
 const { Schema } = mongoose
 
 const ProveedorSchema = new Schema({
-    nombres: String,
-    apellidos: String,
-    cedulaProveedor: Number,
+    nitEmpresa: Number,
+    nombreEmpresa: String,
+    direccionEmpresa: String,
     tipoPersona: String,
-    genero: String,
-    correo: String,
-    telefono: Number,
-    cargo: String,
-    empresa: String,
-    direccion: String,
-    fechaNacimiento: Date,
+    cedulaRepresentante: Number,
+    nombreRepresentante: String,
+    telefonoRepresentante: Number,
+    correoRepresentante: String,
+    cedulaContacto: Number,
+    nombreContacto: String,
+    telefonoContacto: Number,
+    correoContacto: String,
     adminNombre: String,
     date: { type: Date, default: Date.now }
 })
