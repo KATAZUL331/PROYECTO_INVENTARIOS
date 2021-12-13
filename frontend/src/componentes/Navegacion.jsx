@@ -30,7 +30,6 @@ const salida=()=>{
         <Navbar.Brand href="#"></Navbar.Brand>
         <Navbar.Brand hidden ={show} href="#" onClick={()=>salida()} to="/"><i class="fas fa-sign-out-alt"></i>  Cerrar Sesión</Navbar.Brand>
         
-
         <Navbar.Offcanvas
         id="offcanvasNavbar"
         aria-labelledby="offcanvasNavbarLabel"
@@ -56,8 +55,6 @@ const salida=()=>{
                     <NavDropdown.Item href="/usuarioListado"><i class="fa fa-folder-open"></i>  Listado de empleados</NavDropdown.Item>
                     <NavDropdown.Item href="/clienteListado"><i class="fa fa-folder-open"></i>  listado de Clientes</NavDropdown.Item>
                     <NavDropdown.Item href="/clienteListado"><i class="fa fa-folder-open"></i>  listado de Proveedores</NavDropdown.Item>
-                    
-                    
                 </NavDropdown>
 
                 <NavDropdown title="Catálogo" id="offcanvasNavbarDropdown">
