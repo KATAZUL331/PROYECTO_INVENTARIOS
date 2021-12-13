@@ -47,7 +47,7 @@ const salida=()=>{
                 <NavDropdown title="Empresa" id="offcanvasNavbarDropdown">
                     <NavDropdown.Item href="/cliente"><i class="far fa-address-card"></i>  Clientes</NavDropdown.Item>
                     <NavDropdown.Item href="/proveedor"><i class="far fa-address-card"></i>  Proveedores</NavDropdown.Item>
-                    <NavDropdown.Item href="#action5"><i class="far fa-address-card"></i>  Productos</NavDropdown.Item>
+                    <NavDropdown.Item href="/producto"><i class="far fa-address-card"></i>  Productos</NavDropdown.Item>
                 </NavDropdown>
 
                 <NavDropdown title="Listados" id="offcanvasNavbarDropdown">
@@ -57,10 +57,9 @@ const salida=()=>{
                     <NavDropdown.Item href="/proveedorListado"><i class="fa fa-folder-open"></i>  listado de Proveedores</NavDropdown.Item>
                 </NavDropdown>
 
-                <NavDropdown title="Catálogo" id="offcanvasNavbarDropdown">
-                    <NavDropdown.Item href="/catalogo">Productos</NavDropdown.Item>
-                    <NavDropdown.Item href="#action5"></NavDropdown.Item>
-                </NavDropdown>
+                <NavDropdown title="Catalogo" id="offcanvasNavbarDropdown">
+                    <NavDropdown.Item href="/catalogo"><i class="far fa-address-card"></i>  Catalogo Productos</NavDropdown.Item>
+                    </NavDropdown>
             </Nav>
         </Offcanvas.Body>
         </Navbar.Offcanvas>

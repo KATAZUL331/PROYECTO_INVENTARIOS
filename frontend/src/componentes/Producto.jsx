@@ -41,21 +41,21 @@ export default function NuevoProducto () {
             title:mensaje,
             showConfirmButton:false,
             timer:2000
-          })
+        })
 
-          e.target.reset();
-          setTitulo("");
-          setImagen("");
-          setDescripcion("");
-          setPrecio("");
-          setStock("");
+        e.target.reset();
+        setTitulo("");
+        setImagen("");
+        setDescripcion("");
+        setPrecio("");
+        setStock("");
 
-          const obtenerProducto = async()=>{
-  
+        const obtenerProducto = async()=>{
+
             const id = sessionStorage.getItem('idProducto')
             const token = sessionStorage.getItem('token')
             const respuesta = await axios.get('/producto/listarProducto/',{
-              headers:{'autorizar':token}
+                headers:{'autorizar':token}
             })
             console.log(respuesta)
             setProducto(respuesta.data)
@@ -67,16 +67,16 @@ export default function NuevoProducto () {
             descripcion:producto.cedulaUsuario,
             stock:producto.correo,
             
-          }))
-          console.log(data)
-          }
+            }))
+            console.log(data)
+            }
         
-          const obtenerProductos = async(idParametro)=>{
+        const obtenerProductos = async(idParametro)=>{
             setShow(true)
             const id = idParametro
             const token = sessionStorage.getItem('token')
             const respuesta = await axios.get('/producto/listarProductoId/'+id,{
-              headers:{'autorizar':token}
+                headers:{'autorizar':token}
             })
         
             console.log(respuesta.data)
@@ -87,18 +87,15 @@ export default function NuevoProducto () {
             setDescripcion(respuesta.data.descripcion)
             setStock(respuesta.data.stock)
             
-          }
+        }
         obtenerProducto()
-                             
-    
     }
     
         
         return (
         <Container>
             <Col sm="6">
-                
-            <h4>Nuevo Producto</h4>
+            <h4>PRODUCTO</h4>
             <form onSubmit={crearProducto}>
                 <div className="mb-3">
                 <input
@@ -156,7 +153,7 @@ export default function NuevoProducto () {
                 <tr>
                     <th>Titulo</th>
                     <th>Imagen</th>
-                    <th>Desripcion</th>
+                    <th>Descripcion</th>
                     <th>Precio</th>
                     <th>Stock</th>
                 </tr>
@@ -195,6 +192,4 @@ export default function NuevoProducto () {
             </Col>
         </Container>
         );
-            
-    
 }

@@ -14,7 +14,6 @@ import Index from './componentes/Index';
 import Producto from './componentes/Producto';
 import Catalogo from './componentes/Catalogo';
 
-
 function App(){
     return (
     <Router>
@@ -29,12 +28,9 @@ function App(){
         <Route path='/cliente' exact component={Cliente}/>
         <Route path='/clienteListado' exact component={ClienteListado}/>
         <Route path='/proveedor' exact component={Proveedor}/>
+        <Route path='/proveedorListadp' exact component={ProveedorListado}/>
         <Route path='/producto' exact component={Producto}/>
         <Route path='/catalogo' exact component={Catalogo}/>
-
-
-        
-        
     </Router>
     );
 }
