@@ -100,7 +100,7 @@ export default function Catalogo () {
         <Container>
             <Row>
                 {arrayComponente}
-             </Row>
+            </Row>
             </Container>
     )
      
