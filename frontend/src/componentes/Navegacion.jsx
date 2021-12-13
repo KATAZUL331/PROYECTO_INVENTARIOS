@@ -58,7 +58,7 @@ const salida=()=>{
                 </NavDropdown>
 
                 <NavDropdown title="Catálogo" id="offcanvasNavbarDropdown">
-                    <NavDropdown.Item href="#action4">Productos</NavDropdown.Item>
+                    <NavDropdown.Item href="/catalogo">Productos</NavDropdown.Item>
                     <NavDropdown.Item href="#action5"></NavDropdown.Item>
                 </NavDropdown>
             </Nav>
