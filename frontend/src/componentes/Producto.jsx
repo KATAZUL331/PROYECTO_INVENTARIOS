@@ -1,146 +1,110 @@
-import React, { Component } from "react";
+import React, { useState,useEffect } from "react";
+import MaterialTable from 'material-table'
+import { IconName } from "react-icons/fi";
 import { Col, Container } from "reactstrap";
+import Swal from 'sweetalert2'
 import axios from 'axios';
+import { Modal,Button } from 'react-bootstrap';
 
-export default class CrearProducto extends Component {
-    constructor() {
-        super();
-        this.state = {
-            titulo: "",
-            imagen: "",
-            descripcion: "",
-            precio: "",
-            stock: "",
-            _id: "",
-            productos: [],
-        };
-        this.handleChange = this.handleChange.bind(this);
-        this.agregarProducto = this.agregarProducto.bind(this);
-    }
-    handleChange(e) {
-    const { name, value } = e.target;
-    this.setState({[name]: value,});
-    }
+export default function NuevoProducto () {
 
-    async componentDidMount() {
+    const[producto,setProducto]=useState([])
+    const[idProduto,setIdProducto]=useState('')
+    const[titulo,setTitulo]=useState('')
+    const[imagen,setImagen]=useState('')
+    const[descripcion,setDescripcion]=useState('')
+    const[precio,setPrecio]=useState('')
+    const[stock,setStock]=useState('')
+
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+    
+    const  crearProducto = async(e)=>{
+
+        e.preventDefault()
+        const Produc= {
+            titulo,
+            imagen,
+            descripcion,
+            precio,
+            stock,
+        produc: sessionStorage.getItem('idProducto'),
+        producNombre :sessionStorage.getItem('producNombre')
+        }
         const token = sessionStorage.getItem('token')
-        const res = await axios.get('http://localhost:4000/producto/listarProducto',{
+        const res = await axios.post('/producto/crearProducto',Produc,{
         headers:{'autorizar':token}
         })
-        console.log(res)
-        this.fetchProductos();
-    }
+        const mensaje= res.data.mensaje
+        console.log(mensaje)
 
-    fetchProductos() {
-        fetch("/producto/listarProducto/")
-        .then((res) => res.json())
-        .then((data) => {
-            this.setState({ productos: data });
-            console.log(this.state.productos);
-        });
-    }
+        Swal.fire({
+            icon:'success',
+            title:mensaje,
+            showConfirmButton:false,
+            timer:2000
+          })
 
-    deleteProducto(id) {
-        if (window.confirm("ELIMINAR PRODUCTO?")) {
-        fetch(`https://backend3157.herokuapp.com/api/articulos/${id}`, {
-            method: "DELETE",
-            headers: {
-            "x-access-token": localStorage.getItem("tok"),
-            Accept: "application/json",
-            "Content-Type": "application/json",
-            },
-        })
-            .then((res) => res.json())
-            .then((data) => {
-            console.log(data);
-            alert("Producto eliminado");
-            this.fetchProductos();
-            });
-        }
-    }
+          e.target.reset();
+          setTitulo("");
+          setImagen("");
+          setDescripcion("");
+          setPrecio("");
+          setStock("");
 
-    editProducto(id) {
-        fetch(`https://backend3157.herokuapp.com/api/articulos/${id}`)
-        .then((res) => res.json())
-        .then((data) => {
-            console.log(data);
-            this.setState({
-            titulo: data.titulo,
-            imagen: data.imagen,
-            descripcion: data.descripcion,
-            precio: data.precio,
-            stock: data.stock,
-            _id: data._id,
-            });
-        });
+          const obtenerProducto = async()=>{
+  
+            const id = sessionStorage.getItem('idProducto')
+            const token = sessionStorage.getItem('token')
+            const respuesta = await axios.get('/producto/listarProducto/'+id,{
+              headers:{'autorizar':token}
+            })
+            console.log(respuesta)
+            setProducto(respuesta.data)
+          }
+        
+          const obtenerProductos = async(idParametro)=>{
+            setShow(true)
+            const id = idParametro
+            const token = sessionStorage.getItem('token')
+            const respuesta = await axios.get('/producto/listarProductoId/'+id,{
+              headers:{'autorizar':token}
+            })
+        
+            console.log(respuesta.data)
+        
+            setIdProducto(respuesta.data._id)
+            setTitulo(respuesta.data.titulo)
+            setImagen(respuesta.data.imagen)
+            setDescripcion(respuesta.data.descripcion)
+            setStock(respuesta.data.stock)
+            
+          }
+            producto.map((producto)=>({
+            id:producto._id,
+            titulo:producto.nombres,
+            imagen:producto.apellidos,
+            descripcion:producto.cedulaUsuario,
+            stock:producto.correo,
+            
+          }))
+    
     }
-
-    agregarProducto(e) {
-        e.preventDefault();
-        if (this.state._id) {
-        fetch(
-            `/producto/crearProducto/${this.state._id}`,
-            {
-            method: "PUT",
-            body: JSON.stringify({
-                titulo: this.state.titulo,
-                imagen: this.state.imagen,
-                descripcion: this.state.descripcion,
-                precio: this.state.precio,
-                stock: this.state.stock,
-            }),
-            headers: {
-                "x-access-token": localStorage.getItem("tok"),
-                Accept: "application/json",
-                "Content-Type": "application/json",
-            },
-            }
-        )
-            .then((res) => res.json)
-            .then((data) => {
-            alert("Producto actualizado");
-            this.setState({
-                titulo: "",
-                imagen: "",
-                descripcion: "",
-                precio: "",
-                stock: "",
-                _id: "",
-            });
-            this.fetchProductos();
-            });
-        } else {
-        fetch("/producto/crearProducto", {
-            method: "POST",
-            body: JSON.stringify(this.state),
-            headers: {
-            "x-access-token": localStorage.getItem("token"),
-            Accept: "autorizar",
-            "Content-Type": "application/json",
-            },
-        })
-            .then((res) => res.json())
-            .then((data) => {
-            console.log(data);
-            alert("Producto creado");
-            this.fetchProductos();
-            });
-        }
-    }
-    render() {
+    
+    //render()
         return (
         <Container>
             <Col sm="6">
             <h4>Nuevo Producto</h4>
-            <form onSubmit={this.agregarProducto}>
+            <form onSubmit={crearProducto}>
                 <div className="mb-3">
                 <input
                     name="titulo"
                     className="form-control"
                     type="text"
                     placeholder="Ingrese título"
-                    onChange={this.handleChange}
-                    value={this.state.titulo}
+                    onChange={(e)=>setTitulo(e.target.value)} 
                 />
                 </div>
                 <div className="mb-3">
@@ -149,8 +113,7 @@ export default class CrearProducto extends Component {
                     className="form-control"
                     type="text"
                     placeholder="Ingrese link de imagen"
-                    onChange={this.handleChange}
-                    value={this.state.imagen}
+                    onChange={(e)=>setImagen(e.target.value)}
                 />
                 </div>
                 <div className="mb-3">
@@ -159,8 +122,7 @@ export default class CrearProducto extends Component {
                     className="form-control"
                     type="text"
                     placeholder="Ingrese descripcion"
-                    onChange={this.handleChange}
-                    value={this.state.descripcion}
+                    onChange={(e)=>setDescripcion(e.target.value)}
                 />
                 </div>
                 <div className="mb-3">
@@ -169,8 +131,7 @@ export default class CrearProducto extends Component {
                     className="form-control"
                     type="text"
                     placeholder="Ingrese el precio"
-                    onChange={this.handleChange}
-                    value={this.state.precio}
+                    onChange={(e)=>setPrecio(e.target.value)}
                 />
                 </div>
                 <div className="mb-3">
@@ -178,9 +139,7 @@ export default class CrearProducto extends Component {
                     name="stock"
                     className="form-control"
                     type="number"
-                    placeholder="Ingrese cantidad"
-                    onChange={this.handleChange}
-                    value={this.state.stock}
+                    placeholder={(e)=>setStock(e.target.value)}
                 />
                 </div>
                 <button type="submit" className="btn btn-primary">
@@ -201,7 +160,7 @@ export default class CrearProducto extends Component {
                 </tr>
                 </thead>
                 <tbody>
-                {this.state.productos.map((producto) => {
+                {producto.map((producto) => {
                     return (
                     <tr key={producto._id}>
                         <td>{producto.titulo}</td>
@@ -233,5 +192,6 @@ export default class CrearProducto extends Component {
             </Col>
         </Container>
         );
-    }
+    
+    
 }

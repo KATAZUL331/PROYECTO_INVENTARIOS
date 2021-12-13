@@ -29,7 +29,10 @@ function App(){
         <Route path='/clienteListado' exact component={ClienteListado}/>
         <Route path='/proveedor' exact component={Proveedor}/>
         <Route path='/producto' exact component={Producto}/>
-        <Route path='/proveedorListado' exact component={ProveedorListado}/>
+
+
+        
+        
     </Router>
     );
 }
