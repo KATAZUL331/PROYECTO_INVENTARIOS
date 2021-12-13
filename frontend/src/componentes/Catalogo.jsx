@@ -40,12 +40,12 @@ export class ListarProductos extends Component {
             )
           }
         )
- 
+
         return (
             <Container>
                 <Row>
                     {arrayComponente}
-                 </Row>
+                </Row>
                 </Container>
         )
     }
