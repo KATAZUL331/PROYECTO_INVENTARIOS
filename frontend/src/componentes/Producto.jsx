@@ -92,13 +92,15 @@ export default function NuevoProducto () {
             
           }
         obtenerProducto()
+                             
     
     }
     
-    //render()
+        
         return (
         <Container>
             <Col sm="6">
+                
             <h4>Nuevo Producto</h4>
             <form onSubmit={crearProducto}>
                 <div className="mb-3">
@@ -145,7 +147,7 @@ export default function NuevoProducto () {
                     onChange={(e)=>setStock(e.target.value)}
                 />
                 </div>
-                <button type="submit" className="btn btn-primary">
+                <button type="submit" className="btn btn-primary" formMethod="POST">
                 Guardar
                 </button>
             </form>
@@ -164,6 +166,7 @@ export default function NuevoProducto () {
                 </thead>
                 <tbody>
                 {producto.map((data) => {
+                    
                     return (
                     <tr key={data._id}>
                         <td>{data.titulo}</td>
@@ -173,14 +176,14 @@ export default function NuevoProducto () {
                         <td>{data.stock}</td>
                         <td>
                         <button
-                            onClick={() => this.editProducto(producto._id)}
+                            onClick={() => this.editProducto(data._id)}
                             type="button"
                             className="btn btn-info"
                         >
                             Editar
                         </button>
                         <button
-                            onClick={() => this.deleteProducto(producto._id)}
+                            onClick={() => axios.delete(data._id)}
                             type="button"
                             className="btn btn-danger"
                         >
@@ -195,6 +198,6 @@ export default function NuevoProducto () {
             </Col>
         </Container>
         );
-    
+            
     
 }
