@@ -57,11 +57,21 @@ export default function NuevoProducto () {
   
             const id = sessionStorage.getItem('idProducto')
             const token = sessionStorage.getItem('token')
-            const respuesta = await axios.get('/producto/listarProducto/'+id,{
+            const respuesta = await axios.get('/producto/listarProducto/',{
               headers:{'autorizar':token}
             })
             console.log(respuesta)
             setProducto(respuesta.data)
+            const data =
+            producto.map((producto)=>({
+            id:producto._id,
+            titulo:producto.nombres,
+            imagen:producto.apellidos,
+            descripcion:producto.cedulaUsuario,
+            stock:producto.correo,
+            
+          }))
+          console.log(data)
           }
         
           const obtenerProductos = async(idParametro)=>{
@@ -81,14 +91,7 @@ export default function NuevoProducto () {
             setStock(respuesta.data.stock)
             
           }
-            producto.map((producto)=>({
-            id:producto._id,
-            titulo:producto.nombres,
-            imagen:producto.apellidos,
-            descripcion:producto.cedulaUsuario,
-            stock:producto.correo,
-            
-          }))
+        obtenerProducto()
     
     }
     
@@ -139,7 +142,7 @@ export default function NuevoProducto () {
                     name="stock"
                     className="form-control"
                     type="number"
-                    placeholder={(e)=>setStock(e.target.value)}
+                    onChange={(e)=>setStock(e.target.value)}
                 />
                 </div>
                 <button type="submit" className="btn btn-primary">
@@ -160,14 +163,14 @@ export default function NuevoProducto () {
                 </tr>
                 </thead>
                 <tbody>
-                {producto.map((producto) => {
+                {producto.map((data) => {
                     return (
-                    <tr key={producto._id}>
-                        <td>{producto.titulo}</td>
-                        <td>{producto.imagen}</td>
-                        <td>{producto.descripcion}</td>
-                        <td>{producto.precio}</td>
-                        <td>{producto.stock}</td>
+                    <tr key={data._id}>
+                        <td>{data.titulo}</td>
+                        <td>{data.imagen}</td>
+                        <td>{data.descripcion}</td>
+                        <td>{data.precio}</td>
+                        <td>{data.stock}</td>
                         <td>
                         <button
                             onClick={() => this.editProducto(producto._id)}
