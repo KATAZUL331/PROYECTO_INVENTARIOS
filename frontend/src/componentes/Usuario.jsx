@@ -19,11 +19,11 @@ export default function RegistrarUsuario() {
 
 
   useEffect(()=>{
-    setCargo(['Auxiliar','Jefe','Tecnico','Profesional','Vendedor', 'Comprador'])
-    setCargoSelect('Auxiliar')
+    setCargo(['Seleccionar','Auxiliar','Jefe','Tecnico','Profesional','Vendedor', 'Comprador'])
+    setCargoSelect('Seleccionar')
 
-    setTipoContrato(['Fijo','Prestacion de Servicios','Aprendizaje','Indefinido'])
-    setTipoContratoSelect('Fijo')
+    setTipoContrato(['Seleccionar','Fijo','Prestacion de Servicios','Aprendizaje','Indefinido'])
+    setTipoContratoSelect('Seleccionar')
   },[])
 
 
@@ -120,7 +120,7 @@ export default function RegistrarUsuario() {
             <div className="col-md-7  mx-auto">
               <div className="card">
                 <div className="container text-center fa-5x">
-                  <i className="fas fa-user-plus"></i>
+                  <i className="fas fa-users"></i>
                 </div>
                 <div className="card-header bg-success text-center">
                   <h4>REGISTRO DE EMPLEADOS</h4>

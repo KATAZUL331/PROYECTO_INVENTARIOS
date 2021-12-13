@@ -40,7 +40,7 @@ export default function RegistrarAdmin() {
         timer:2000
       })
     }
-        else {
+    else {
       const token = sessionStorage.getItem('token')
       const respuesta = await Axios.post('/admin/crear',Admin,{
       headers:{'autorizar':token}
@@ -68,7 +68,7 @@ export default function RegistrarAdmin() {
             <div className="col-md-7  mx-auto">
               <div className="card">
                 <div className="container text-center fa-5x">
-                  <i className="fas fa-user-plus"></i>
+                  <i className="fas fa-users"></i>
                 </div>
                 <div className="card-header bg-success text-center">
                   <h4>REGISTRO DE ADMINISTRADORES</h4>

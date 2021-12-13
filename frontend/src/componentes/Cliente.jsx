@@ -6,40 +6,52 @@ import Axios from 'axios'
 export default function RegistrarCliente() {
   const[nombres,setNombres]=useState('')
   const[apellidos,setApellidos]=useState('')
-  const[cedulaUsuario,setCedulaUsuario]=useState('')
-  const[telefono,setTelefono]=useState('')
+  const[cedulaCliente,setCedulaCliente]=useState('')
   const[correo,setCorreo]=useState('')
-  const[jefeInmediato,setJefeInmediato]=useState('')
+  const[telefono,setTelefono]=useState('')
+  const[empresa,setEmpresa]=useState('')
+  const[direccion,setDireccion]=useState('')
+  const[fechaNacimiento,setFechaNacimiento]=useState('')
+  
+  const[genero,setGenero]=useState([])
+  const[generoSelect,setGeneroSelect]=useState([])
 
   const[cargo,setCargo]=useState([])
   const[cargoSelect,setCargoSelect]=useState([])
   
-  const[tipoContrato,setTipoContrato]=useState([])
-  const[tipoContratoSelect,setTipoContratoSelect]=useState([])
+  const[tipoPersona,setTipoPersona]=useState([])
+  const[tipoPersonaSelect,setTipoPersonaSelect]=useState([])
 
 
   useEffect(()=>{
-    setCargo(['Auxiliar','Jefe','Tecnico','Profesional','Vendedor', 'Comprador'])
-    setCargoSelect('Auxiliar')
+    setCargo(['Seleccionar','Representante Legal', 'Auxiliar','Jefe','Tecnico','Profesional','Vendedor', 'Comprador'])
+    setCargoSelect('Seleccionar')
 
-    setTipoContrato(['Fijo','Prestacion de Servicios','Aprendizaje','Indefinido'])
-    setTipoContratoSelect('Fijo')
+    setTipoPersona(['Seleccionar','Natural','Juridica'])
+    setTipoPersonaSelect('Seleccionar')
+
+    setGenero(['Seleccionar','Femenino','Masculino'])
+    setGeneroSelect('Seleccionar')
+
   },[])
 
 
   const guardar = async(e)=>{
     e.preventDefault()
-    const usuario= {
-      nombres,
-      apellidos,
-      cedulaUsuario,
-      correo,
-      telefono,
-      jefeInmediato,
-      cargo:cargoSelect,
-      tipoContrato: tipoContratoSelect,
-      admin: sessionStorage.getItem('idAdmin'),
-      adminNombre :sessionStorage.getItem('nombre')
+    const Cliente= {
+    nombres,
+    apellidos,
+    cedulaCliente,
+    tipoPersona:tipoPersonaSelect,
+    genero:generoSelect,
+    correo,
+    telefono,
+    cargo:cargoSelect,
+    empresa,
+    direccion,
+    fechaNacimiento,
+    admin: sessionStorage.getItem('idAdmin'),
+    adminNombre :sessionStorage.getItem('nombre')
     }
     if(nombres===""){
       Swal.fire({
@@ -57,10 +69,18 @@ export default function RegistrarCliente() {
         timer:2000
       })
     }
-    else if(cedulaUsuario===""){
+    else if(cedulaCliente===""){
       Swal.fire({
         icon:'error',
         title:"REGISTRAR NUMERO DE DOCUMENTO",
+        showConfirmButton:false,
+        timer:2000
+      })
+    }
+    else if(fechaNacimiento===""){
+      Swal.fire({
+        icon:'error',
+        title:"REGISTRAR FECHA DE NACIMIENTO",
         showConfirmButton:false,
         timer:2000
       })
@@ -81,17 +101,25 @@ export default function RegistrarCliente() {
         timer:2000
       })
     }
-    else if(jefeInmediato===""){
+    else if(empresa===""){
       Swal.fire({
         icon:'error',
-        title:"REGISTRAR SU JEFE INMEDIATO",
+        title:"REGISTRAR EMPRESA DE TRABAJO",
+        showConfirmButton:false,
+        timer:2000
+      })
+    }
+    else if(direccion===""){
+      Swal.fire({
+        icon:'error',
+        title:"REGISTRAR DIRECCION DE LA EMPRESA",
         showConfirmButton:false,
         timer:2000
       })
     }
     else {
       const token = sessionStorage.getItem('token')
-      const respuesta = await Axios.post('/usuario/crear',usuario,{
+      const respuesta = await Axios.post('/Cliente/crear',Cliente,{
       headers:{'autorizar':token}
       })
       const mensaje= respuesta.data.mensaje
@@ -107,10 +135,12 @@ export default function RegistrarCliente() {
       e.target.reset();
       setNombres("");
       setApellidos("");
-      setCedulaUsuario("");
+      setCedulaCliente("");
       setCorreo("");
       setTelefono("");
-      setJefeInmediato("");
+      setEmpresa("");
+      setDireccion("");
+      setFechaNacimiento("");
     }
   }
 
@@ -120,10 +150,10 @@ export default function RegistrarCliente() {
             <div className="col-md-7  mx-auto">
               <div className="card">
                 <div className="container text-center fa-5x">
-                  <i className="fas fa-user-plus"></i>
+                  <i className="fas fa-users"></i>
                 </div>
-                <div className="card-header bg-info text-center">
-                  <h4>REGISTRO DE EMPLEADOS</h4>
+                <div className="card-header bg-success text-center">
+                  <h4>REGISTRO DE CLIENTES</h4>
                 </div>
                 <div className="card-body">
                   <form onSubmit={guardar}>
@@ -141,7 +171,38 @@ export default function RegistrarCliente() {
 
                       <div className="col-md-6">
                         <label>Documento de Identidad</label>
-                        <input type="text" className="form-control required" onChange={(e)=>setCedulaUsuario(e.target.value)} />
+                        <input type="text" className="form-control required" onChange={(e)=>setCedulaCliente(e.target.value)} />
+                      </div>
+
+                      <div className="col-md-6">
+                        <label>Tipo de Persona</label>
+                        <select className='form-control' onChange={(e) => setTipoPersonaSelect(e.target.value)}>
+                            {
+                                tipoPersona.map(tipoPersona => (
+                                    <option key={tipoPersona}>
+                                        {tipoPersona}
+                                  </option>
+                                ))
+                            }
+                            </select>
+                      </div>
+
+                      <div className="col-md-6">
+                        <label>Genero</label>
+                        <select className='form-control' onChange={(e) => setGeneroSelect(e.target.value)}>
+                            {
+                                genero.map(genero => (
+                                    <option key={genero}>
+                                        {genero}
+                                  </option>
+                                ))
+                            }
+                            </select>
+                      </div>
+
+                      <div className="col-md-6">
+                        <label>Fecha de Nacimiento</label>
+                        <input type="text" className="form-control required" onChange={(e)=>setFechaNacimiento(e.target.value)} />
                       </div>
 
                       <div className="col-md-6">
@@ -167,26 +228,18 @@ export default function RegistrarCliente() {
                       </div>
 
                       <div className="col-md-6">
-                        <label>Tipo de Contrato</label>
-                        <select className='form-control' onChange={(e) => setTipoContratoSelect(e.target.value)}>
-                            {
-                                tipoContrato.map(tipoContrato => (
-                                    <option key={tipoContrato}>
-                                        {tipoContrato}
-                                  </option>
-                                ))
-                            }
-                            </select>
+                        <label>Empresa</label>
+                        <input type="text" className="form-control required" onChange={(e)=>setEmpresa(e.target.value)} />
                       </div>
 
                       <div className="col-md-6">
-                        <label>Jefe Inmediato</label>
-                        <input type="text" className="form-control required" onChange={(e)=>setJefeInmediato(e.target.value)} />
+                        <label>Direccion</label>
+                        <input type="text" className="form-control required" onChange={(e)=>setDireccion(e.target.value)} />
                       </div>
                     </div>
                       <br />
                     <button type="submit" class="btn btn-outline-info">
-                      <span class="fa fa-save"></span> Guardar Empleado
+                      <span class="fa fa-save"></span> Guardar Cliente
                     </button>
                   </form>
                 </div>
